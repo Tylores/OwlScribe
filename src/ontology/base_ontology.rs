@@ -49,9 +49,17 @@ impl BaseOntologyLoader {
         Self::from_str(&content)
     }
 
-    /// Loads a base ontology from a raw content string (.ofn, .rdf, or .ttl) and extracts its seed.
+    /// Loads a base ontology from a raw content string (.ofn, .rdf, .ttl, or .jsonld) and extracts its seed.
     pub fn from_str(content: &str) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
         let trimmed = content.trim();
+
+        // If content starts with JSON signature, try JSON-LD first
+        if trimmed.starts_with('{') {
+            if let Ok(res) = Self::parse_jsonld_str(content) {
+                return Ok(res);
+            }
+        }
+
         // If content starts with OFN signature (Prefix or Ontology) or file format hint, try OFN first
         if trimmed.starts_with("Prefix") || trimmed.starts_with("Ontology") {
             if let Ok(res) = Self::parse_ofn_str(content) {
@@ -64,6 +72,11 @@ impl BaseOntologyLoader {
             return Ok(res);
         }
 
+        // Try JSON-LD parsing if not tried yet
+        if let Ok(res) = Self::parse_jsonld_str(content) {
+            return Ok(res);
+        }
+
         // Fallback: try OFN parsing if not tried yet
         if !trimmed.starts_with("Prefix") && !trimmed.starts_with("Ontology") {
             if let Ok(res) = Self::parse_ofn_str(content) {
@@ -71,7 +84,7 @@ impl BaseOntologyLoader {
             }
         }
 
-        Err(anyhow::anyhow!("Failed to parse base ontology in any supported format (OFN, RDF/XML, Turtle)"))
+        Err(anyhow::anyhow!("Failed to parse base ontology in any supported format (OFN, RDF/XML, Turtle, JSON-LD)"))
     }
 
     /// Alias for backwards compatibility with existing callers.
@@ -91,6 +104,95 @@ impl BaseOntologyLoader {
             .map_err(|e| anyhow::anyhow!("Failed to parse OWL Functional Syntax: {:?}", e))?;
 
         let seed = Self::extract_seed_from_ontology(&ontology)?;
+        Ok((ontology, seed))
+    }
+
+    fn parse_jsonld_str(jsonld_content: &str) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
+        use serde_json::Value;
+
+        let val: Value = serde_json::from_str(jsonld_content)
+            .context("Failed to parse JSON-LD JSON structure")?;
+
+        let nodes = if let Some(graph) = val.get("@graph").and_then(|g| g.as_array()) {
+            graph.clone()
+        } else if val.is_array() {
+            val.as_array().cloned().unwrap_or_default()
+        } else if val.is_object() {
+            vec![val.clone()]
+        } else {
+            vec![]
+        };
+
+        if nodes.is_empty() {
+            return Err(anyhow::anyhow!("JSON-LD contains no nodes or @graph entries"));
+        }
+
+        let build = Build::new();
+        let mut ontology = SetOntology::new();
+        let mut ontology_iri = "http://example.org/base#".to_string();
+        let mut top_classes = Vec::new();
+        let mut key_properties = Vec::new();
+
+        for node in &nodes {
+            let id = node.get("@id").and_then(|v| v.as_str()).unwrap_or("");
+            let node_type = node.get("@type").and_then(|v| v.as_str()).unwrap_or("");
+
+            if node_type == "owl:Ontology" || node_type.contains("Ontology") {
+                if !id.is_empty() {
+                    ontology_iri = id.to_string();
+                    ontology.insert(Component::OntologyID(OntologyID::new(Some(build.iri(id)), None)));
+                }
+            } else if node_type == "owl:Class" || node_type.contains("Class") {
+                if !id.is_empty() {
+                    let name = Self::extract_local_name(id);
+                    ontology.insert(DeclareClass(build.class(build.iri(id))));
+                    if !top_classes.iter().any(|c: &SeedClass| c.name == name) {
+                        top_classes.push(SeedClass {
+                            name,
+                            iri: id.to_string(),
+                            comment: None,
+                            synonyms: vec![],
+                        });
+                    }
+                }
+            } else if node_type == "owl:ObjectProperty" || node_type.contains("ObjectProperty") {
+                if !id.is_empty() {
+                    let name = Self::extract_local_name(id);
+                    ontology.insert(DeclareObjectProperty(build.object_property(build.iri(id))));
+                    if !key_properties.iter().any(|p: &SeedProperty| p.name == name) {
+                        key_properties.push(SeedProperty {
+                            name,
+                            iri: id.to_string(),
+                            property_type: "object".to_string(),
+                            domain: None,
+                            range: None,
+                        });
+                    }
+                }
+            } else if node_type == "owl:DataProperty" || node_type.contains("DataProperty") {
+                if !id.is_empty() {
+                    let name = Self::extract_local_name(id);
+                    ontology.insert(DeclareDataProperty(build.data_property(build.iri(id))));
+                    if !key_properties.iter().any(|p: &SeedProperty| p.name == name) {
+                        key_properties.push(SeedProperty {
+                            name,
+                            iri: id.to_string(),
+                            property_type: "data".to_string(),
+                            domain: None,
+                            range: None,
+                        });
+                    }
+                }
+            }
+        }
+
+        let seed = BaseOntologySeed {
+            ontology_iri,
+            prefix: None,
+            top_classes,
+            key_properties,
+        };
+
         Ok((ontology, seed))
     }
 

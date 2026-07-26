@@ -18,7 +18,7 @@ pub struct ParsePdfToTermsArgs {
 pub fn tool_definition() -> McpTool {
     McpTool {
         name: "parse_pdf_to_terms".to_string(),
-        description: "Extracts raw text and standard sections from specification PDFs (ISO, IEEE, W3C, NIST, RFCs), identifies candidate domain terms, and optionally aligns with a base domain ontology seed (Base-First extraction).".to_string(),
+        description: "Step 1 of 2: Extracts raw text and standard sections from specification PDFs (ISO, IEEE, W3C, NIST, RFCs), harvests candidate domain terms (McGuinness Steps 1-3), provides interactive guidance, and optionally aligns with a base domain ontology seed (Base-First extraction). Next, proceed directly to generate_owl_ontology.".to_string(),
         input_schema: json!({
             "type": "object",
             "properties": {
@@ -37,7 +37,7 @@ pub fn tool_definition() -> McpTool {
                 },
                 "base_ontology_path": {
                     "type": "string",
-                    "description": "Optional path to an existing base ontology (.ofn format) to guide term extraction and mapping."
+                    "description": "Optional path to an existing base ontology (.ttl, .jsonld, .ofn, .rdf) to guide term extraction and mapping."
                 },
                 "base_ontology_seed": {
                     "type": "object",

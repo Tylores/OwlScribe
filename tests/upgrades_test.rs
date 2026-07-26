@@ -116,3 +116,61 @@ Voltage is measured in Volts.
     assert!(device_entry.confidence_score > 0.3);
     assert!(!device_entry.suggested_relation.is_empty());
 }
+
+#[test]
+fn test_ieee1547_interactive_guidance_and_saref4grid_suggestion() {
+    let ieee1547_text = r#"
+IEEE Std 1547-2018
+IEEE Standard for Interconnection and Interoperability of Distributed Energy Resources
+3. Definitions
+3.1 Interconnection System: Equipment and devices for connecting DER to electric power system.
+3.2 DER: Distributed Energy Resources capable of injecting active power.
+"#;
+
+    let result = TermExtractor::parse_raw_text(
+        ieee1547_text,
+        "IEEE Std 1547",
+        Some(SpecType::Ieee),
+        Some(0.3),
+        None,
+    )
+    .unwrap();
+
+    // Check interactive guidance
+    assert_eq!(result.interactive_guidance.status, "unseeded_extraction");
+    assert!(result.interactive_guidance.message.contains("SAREF4GRID"));
+    assert!(!result.interactive_guidance.recommended_actions.is_empty());
+
+    // Check suggested base ontologies
+    let suggestions = result.step2_reuse_references.suggested_base_ontologies;
+    assert!(
+        suggestions.iter().any(|s| s.contains("saref4grid")),
+        "IEEE 1547 text must suggest saref4grid base ontology"
+    );
+}
+
+#[test]
+fn test_jsonld_base_ontology_ingestion() {
+    let jsonld_str = r#"{
+  "@context": {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org/test-base#",
+      "@type": "owl:Ontology"
+    },
+    {
+      "@id": "http://example.org/test-base#GridDevice",
+      "@type": "owl:Class"
+    }
+  ]
+}"#;
+
+    let (_ont, seed) = BaseOntologyLoader::from_str(jsonld_str)
+        .expect("BaseOntologyLoader must support JSON-LD ingestion");
+
+    assert_eq!(seed.ontology_iri, "http://example.org/test-base#");
+    assert!(seed.top_classes.iter().any(|c| c.name == "GridDevice"));
+}

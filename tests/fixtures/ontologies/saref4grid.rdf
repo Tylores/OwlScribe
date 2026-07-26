@@ -1,0 +1,1296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:ns5="http://schema.org/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:vann="http://purl.org/vocab/vann/"
+>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasVendorId">
+    <rdfs:label xml:lang="en">has vendor id</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Firmware"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedShort"/>
+    <rdfs:comment xml:lang="en">[COSEM] Unique vendor identifier assigned by the PRIME Alliance</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/MeterProperty">
+    <rdfs:label xml:lang="en">Meter Property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdfs:comment xml:lang="en">Class to group those properties related to electric grid meters</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ProfileGeneric">
+    <rdfs:label xml:lang="en">Profile Generic</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb32"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class provides a generalized concept allowing to store, sort and access data groups or data series, called capture objects. Capture objects are appropriate attributes or elements of (an) attribute(s) of COSEM objects. The capture objects are collected periodically or occasionally</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasMACAddress">
+    <rdfs:label xml:lang="en">has m a c address</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/NetworkInterface"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">[COSEM] Holds the MAC address</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SetOperationDataInput">
+    <rdfs:label xml:lang="en">Set Operation Data Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb43"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb42"/>
+    <rdfs:comment xml:lang="en">This class specifies that just the range of a datatype property of the instance is going to be modified</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb39">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasFridayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/">
+    <vann:preferredNamespaceUri>https://saref.etsi.org/saref4grid/</vann:preferredNamespaceUri>
+    <dcterms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-04-25</dcterms:issued>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dcterms:description xml:lang="en">This ontology extends the SAREF ontology for the smart grid domain.</dcterms:description>
+    <dcterms:source rdf:resource="https://saref.etsi.org/sources/saref4grid/"/>
+    <rdfs:seeAlso rdf:resource="https://www.etsi.org/deliver/etsi_ts/103400_103499/10341012/01.01.01_60/ts_10341012v010101p.pdf"/>
+    <vann:preferredNamespacePrefix>s4grid</vann:preferredNamespacePrefix>
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-06-05</dcterms:modified>
+    <owl:versionIRI rdf:resource="https://saref.etsi.org/saref4grid/v2.1.1/"/>
+    <dcterms:publisher rdf:resource="https://www.etsi.org/"/>
+    <owl:versionInfo>v2.1.1</owl:versionInfo>
+    <dcterms:license rdf:resource="https://forge.etsi.org/etsi-software-license"/>
+    <dcterms:creator rdf:resource="https://www.linkedin.com/in/sergio-mario-carulli-p%C3%A9rez-7632b5217/"/>
+    <dcterms:creator rdf:resource="http://w3id.org/people/mpoveda"/>
+    <dcterms:creator rdf:resource="http://www.garcia-castro.com/foaf.rdf#me"/>
+    <dcterms:title xml:lang="en">SAREF4GRID: an extension of SAREF for the Smart Grid domain</dcterms:title>
+    <rdfs:comment>The development of the SAREF4GRID ontology has been partially funded by the IA4TES project (MIA.2021.M04.0008), funded by the Spanish Ministry of Economic Affairs and Digital Transformation and by the NextGenerationEU program</rdfs:comment>
+    <owl:priorVersion rdf:resource="https://saref.etsi.org/saref4grid/v1.1.1/"/>
+    <owl:imports rdf:resource="https://saref.etsi.org/core/v4.1.1/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/VoltageSagNumber">
+    <rdfs:label xml:lang="en">Voltage Sag Number</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating the number of voltage sags detected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDaylightSavingsBegin">
+    <rdfs:label xml:lang="en">has daylight savings begin</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">[COSEM] Defines the local switch date and time when the local time starts to deviate from the normal time</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/relatedObservation">
+    <rdfs:label xml:lang="en">related observation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ProfileGeneric"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Observation"/>
+    <rdfs:comment xml:lang="en">The observation that is captured by a profile generic</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SeasonProfile">
+    <rdfs:label xml:lang="en">Season Profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb33"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb39"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb38"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb34"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb41"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb40"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb37"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb36"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb35"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class represents a season which is defined by its starting date and a specific day profile to be executed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/PresetAdjustingTime">
+    <rdfs:label xml:lang="en">Preset Adjusting Time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/ComplexActionOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb29"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb31"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb30"/>
+    <rdfs:comment xml:lang="en">This class represents the parameters that are needed by a clock to modify its time</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasTuesdayProfile">
+    <rdfs:label xml:lang="en">has tuesday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Tuesday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasActionValue">
+    <rdfs:label xml:lang="en">has action value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SimpleActionOperationInput"/>
+    <rdfs:comment xml:lang="en">It specifies the input of a method from the instance (COSEM object) of a class. The value of this property conforms to a simple type (not a structure)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasValidityIntervalStart">
+    <rdfs:label xml:lang="en">has validity interval start</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/PresetAdjustingTime"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">It defines the start of a validity interval within which the new time can be activated</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/TransformerRatio">
+    <rdfs:label xml:lang="en">Transformer Ratio</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating the transformer turn ratio</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/PowerQuality">
+    <rdfs:label xml:lang="en">Power Quality</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its power quality</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Voltage">
+    <rdfs:label xml:lang="en">Voltage</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its voltage</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb18">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasFirmwareVersion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSaturdayProfile">
+    <rdfs:label xml:lang="en">has saturday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Saturday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb23">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/obtainInputForProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasActiveSeasonProfile">
+    <rdfs:label xml:lang="en">has active season profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/SeasonProfile"/>
+    <rdfs:comment xml:lang="en">[COSEM] Contains a list of active season profiles. These season profiles form an active calendar</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasCalendarNameActive"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/TimeThreshold">
+    <rdfs:label xml:lang="en">Time Threshold</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating the time outside a threshold</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasValidityIntervalEnd">
+    <rdfs:label xml:lang="en">has validity interval end</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/PresetAdjustingTime"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">It defines the end of a validity interval within which the new time can be activated</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasFirmwareVersion">
+    <rdfs:label xml:lang="en">has firmware version</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Firmware"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">[COSEM] Textual description of the firmware version running on the device</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasClock">
+    <rdfs:label xml:lang="en">has clock</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:comment xml:lang="en">The clock of the meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasDaylightSavingsDeviation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasMondayProfile">
+    <rdfs:label xml:lang="en">has monday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Monday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSpecialDayDate">
+    <rdfs:label xml:lang="en">has special day date</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SpecialDayProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:comment xml:lang="en">Dates at which a normal day is considered a special date (i.e., Christmas)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/DurationLongPowerFailure">
+    <rdfs:label xml:lang="en">Duration Long Power Failure</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/QualityProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating the duration of the long power failures detected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasPresetTime">
+    <rdfs:label xml:lang="en">has preset time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/PresetAdjustingTime"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">It pre-sets the clock time to a new value</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Script">
+    <rdfs:label xml:lang="en">Script</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Function"/>
+    <rdfs:comment xml:lang="en">[COSEM] Lists of actions to be executed by the meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/obtainToEntry">
+    <rdfs:label xml:lang="en">obtain to entry</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/EntryDescriptor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedLong"/>
+    <rdfs:comment xml:lang="en">It defines the last entry to be retrieved from a profile generic</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSpecialDate">
+    <rdfs:label xml:lang="en">has special date</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SpecialDayEntry"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:comment xml:lang="en">It defines the date at which a normal day is considered a special date</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/obtainFromValue">
+    <rdfs:label xml:lang="en">obtain from value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/RangeDescriptor"/>
+    <rdfs:comment xml:lang="en">It restricts the range of entries to be retrieved from a profile generic defining the oldest or smallest entry to retrieve</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/BreakerState">
+    <rdfs:label xml:lang="en">Breaker State</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/State"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb14"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb13"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb12"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class manages an internal or external disconnect unit of the meter (e.g. electricity breaker, gas valve) in order to connect or disconnect – partly or entirely – the premises of the consumer to / from the supply</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/DaySchedule">
+    <rdfs:label xml:lang="en">Day Scheduled</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb16"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb17"/>
+    <rdfs:comment xml:lang="en">Scheduled actions to be executed at a given time for a day profile</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GetOperationDataOutput">
+    <rdfs:label xml:lang="en">Get Operation Data Output</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/GetOperationOutput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb21"/>
+    <rdfs:comment xml:lang="en">This class specifies that the output of a get operation is going to be a datatype</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty">
+    <rdfs:label xml:lang="en">Energy Power Property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdfs:comment xml:lang="en">Class to group those properties related to the energy and power of power lines</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasInputDataType">
+    <rdfs:label xml:lang="en">has input data type</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SetOperationDataInput"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">It identifies the type of the attribute of an instance (COSEM object) of a class from which the data is going to be obtained. The value of this property conforms to the range of a datatype property of SAREF4GRID</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/DayProfile">
+    <rdfs:label xml:lang="en">Day Profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class represents a list of scheduled actions which are defined by a script to be executed and the corresponding activation time</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Firmware">
+    <rdfs:label xml:lang="en">Firmware</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb18"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb20"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb19"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class holds identification information related to administration and maintenance of meters. They are not communication parameters but allow the device management</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasStartTime">
+    <rdfs:label xml:lang="en">has start time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/DaySchedule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
+    <rdfs:comment xml:lang="en">[COSEM] Time when the script is going to be executed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDaylightSavingsEnd">
+    <rdfs:label xml:lang="en">has daylight savings end</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">[COSEM] Defines the local switch date and time when the local time ends to deviate from the local normal time</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SpecialDayProfile">
+    <rdfs:label xml:lang="en">Special Day Profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/DayProfile"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb53"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class allows defining special dates. On such dates, a special switching behaviour overrides the normal one</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasTime">
+    <rdfs:label xml:lang="en">has time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">[COSEM] Meter’s local date and time</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb31">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasValidityIntervalEnd"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Organization">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Person">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasTimeZone"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasActivityCalendar">
+    <rdfs:label xml:lang="en">has activity calendar</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:comment xml:lang="en">The activity calendar of a meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb50">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasIndex"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.linkedin.com/in/sergio-mario-carulli-p%C3%A9rez-7632b5217/">
+    <ns5:familyName>Carulli-Pérez</ns5:familyName>
+    <ns5:givenName>Sergio-Mario</ns5:givenName>
+    <ns5:affiliation rdf:resource="https://www.upm.es/"/>
+    <rdf:type rdf:resource="http://schema.org/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb36">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasTuesdayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDaylightSavingsDeviation">
+    <rdfs:label xml:lang="en">has daylight savings deviation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment xml:lang="en">[COSEM] Contains the number of minutes by which the deviation in generalized time shall be corrected at daylight savings begin</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.upm.es/">
+    <ns5:name>Universidad Politécnica de Madrid</ns5:name>
+    <rdf:type rdf:resource="http://schema.org/Organization"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDaylightSavingsEnabled">
+    <rdfs:label xml:lang="en">has daylight savings enabled</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment xml:lang="en">[COSEM] Enable and disable the daylight savings time feature</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasProductId">
+    <rdfs:label xml:lang="en">has product id</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Firmware"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedShort"/>
+    <rdfs:comment xml:lang="en">[COSEM] Vendor-assigned unique identifier for the specific product</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/obtainToValue">
+    <rdfs:label xml:lang="en">obtain to value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/RangeDescriptor"/>
+    <rdfs:comment xml:lang="en">It restricts the range of entries to be retrieved from a profile generic defining the newest or largest entry to retrieve</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb13">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasControlState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/obtainInputFromObis">
+    <rdfs:label xml:lang="en">obtain input from obis</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">It identifies the instance (COSEM object) of a class from which the data is going to be obtained. The value of this property conforms to OBIS</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb28">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasMACAddress"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/relatedClock">
+    <rdfs:label xml:lang="en">related clock</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ProfileGeneric"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:comment xml:lang="en">The clock that is captured by a profile generic</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasScriptTable">
+    <rdfs:label xml:lang="en">has script table</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/ScriptTable"/>
+    <rdfs:comment xml:lang="en">The script table of a meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb24">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/hasOutput"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSingleScheduledAction">
+    <rdfs:label xml:lang="en">has single scheduled action</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/SingleScheduledAction"/>
+    <rdfs:comment xml:lang="en">The single scheduled action of a meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SetOperationObjectInput">
+    <rdfs:label xml:lang="en">Set Operation Object Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb45"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb46"/>
+    <rdfs:comment xml:lang="en">This class specifies that just the range of an object property of the instance is going to be modified</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb15">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/obtainInputFromObis"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb34">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasSeasonStart"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/PowerLimit">
+    <rdfs:label xml:lang="en">Power Limit</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its power limit</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GetOperationPropertyInput">
+    <rdfs:label xml:lang="en">Get Operation Property Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb23"/>
+    <rdfs:comment xml:lang="en">This class specifies the object/datatype property of an instance from which data is going to be retrieved by indicating the name of the object/datatype property</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb43">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasInputDataType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasExecutionTime">
+    <rdfs:label xml:lang="en">has execution time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SingleScheduledAction"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">[COSEM] Specifies the time and the date when the script is executed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GridMeter">
+    <rdfs:label xml:lang="en">Meter</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb26"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Meter"/>
+    <rdfs:comment xml:lang="en">Metering device that remotely records real electricity consumption. This device allows to control all the information regarding consumption for any time range, automatically and remotely</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb20">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasProductId"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ScriptTable">
+    <rdfs:label xml:lang="en">Script Table</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">This class allows modelling the triggering of a series of actions by executing scripts</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSelectiveAccess">
+    <rdfs:label xml:lang="en">has selective access</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GetOperation"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/SelectiveAccess"/>
+    <rdfs:comment xml:lang="en">The selective access of a profile generic get service</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Clock">
+    <rdfs:label xml:lang="en">Clock</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb5"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb10"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb8"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb7"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb4"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb6"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb9"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb11"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class models the device clock, managing all information related to date and time including deviations of the local time to a generalized time reference (UTC) due to time zones and daylight-saving time schemes</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SingleScheduledAction">
+    <rdfs:label xml:lang="en">Single Scheduled Action</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb49"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class allows modelling the execution of periodic actions within a meter; such actions are not necessarily linked to tariffication</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasPassiveSeasonProfile">
+    <rdfs:label xml:lang="en">has passive season profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/SeasonProfile"/>
+    <rdfs:comment xml:lang="en">[COSEM] Contains a list of passive season profiles. These season profiles form a passive calendar</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SelectiveAccess">
+    <rdfs:label xml:lang="en">Selective Access</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/oneM2M#OperationInput"/>
+    <rdfs:comment xml:lang="en">The get operations property-related services typically reference the entire property. However, in the case of certain properties, selective access to only part of the property may be provided</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/publisher">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SetOperationObisInput">
+    <rdfs:label xml:lang="en">Set Operation Obis Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb44"/>
+    <rdfs:comment xml:lang="en">This class specifies that the whole instance is going to be modified</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDaySchedule">
+    <rdfs:label xml:lang="en">has day schedule</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/DayProfile"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/DaySchedule"/>
+    <rdfs:comment xml:lang="en">The day schedule of a day profile</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GetOperation">
+    <rdfs:label xml:lang="en">Get Operation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb24"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb25"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Operation"/>
+    <rdfs:comment xml:lang="en">This class is the means of a get service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices). It is the –machine interpretable- exposure of a –human understandable- Command to a network</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ApparentPower">
+    <rdfs:label xml:lang="en">Apparent Power</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its apparent power</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb25">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/hasInput"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/QualityProperty">
+    <rdfs:label xml:lang="en">Quality Property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdfs:comment xml:lang="en">Class to group those properties related to the quality of power lines</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/issued">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SetService">
+    <rdfs:label xml:lang="en">Set Service</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Service"/>
+    <rdfs:comment xml:lang="en">This class is a representation of a set function to a network that makes the function discoverable, registerable, remotely controllable by other devices in the network</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb49">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/executesScript"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb32">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasCapturePeriod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/DurationVoltageSwell">
+    <rdfs:label xml:lang="en">Duration Voltage Swell</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/QualityProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating the duration of the voltage swells detected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb42">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/obtainInputForProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDayProfile">
+    <rdfs:label xml:lang="en">has day profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SeasonProfile"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/DayProfile"/>
+    <rdfs:comment xml:lang="en">[COSEM] Day profile for every day of the week of a season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Manufacturer">
+    <rdfs:label xml:lang="en">Manufacturer</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its manufacturer information</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasOutputObjectType">
+    <rdfs:label xml:lang="en">has output object type</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GetOperationObjectOutput"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">It identifies the type of the attribute of an instance (COSEM object) of a class from which the data is going to be obtained. The value of this property conforms to the range of an object property of SAREF4GRID</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GetOperationObjectOutput">
+    <rdfs:label xml:lang="en">Get Operation Object Output</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/GetOperationOutput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb22"/>
+    <rdfs:comment xml:lang="en">This class specifies that the output of a get operation is going to be a class</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasDaylightSavingsEnabled"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasClockBase"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/oneM2M#Device">
+    <rdfs:label xml:lang="en">Device</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="https://git.onem2m.org/MAS/BaseOntology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/RangeDescriptor">
+    <rdfs:label xml:lang="en">Range Descriptor</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/SelectiveAccess"/>
+    <rdfs:comment xml:lang="en">In the case of a get service of a profile generic class a selective access can be specified. This indicates the range of values to be retrieved from the profile generic class</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSundayProfile">
+    <rdfs:label xml:lang="en">has sunday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Sunday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasFridayProfile">
+    <rdfs:label xml:lang="en">has friday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Friday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SetOperation">
+    <rdfs:label xml:lang="en">Set Operation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb47"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Operation"/>
+    <rdfs:comment xml:lang="en">This class is the means of a set service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices). It is the –machine interpretable- exposure of a –human understandable- Command to a network</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasClockBase">
+    <rdfs:label xml:lang="en">has clock base</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment xml:lang="en">[COSEM] Defines where the basic timing information comes from: (0) not defined, (1) internal crystal, (2) mains frequency 50 Hz, (3) mains frequency 60 Hz, (4) GPS (global positioning system), (5) radio controlled</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Threshold">
+    <rdfs:label xml:lang="en">Threshold</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating a threshold limit</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/oneM2M#hasService">
+    <rdfs:label xml:lang="en">has service</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:isDefinedBy rdf:resource="https://git.onem2m.org/MAS/BaseOntology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasOutputState">
+    <rdfs:label xml:lang="en">has output state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/BreakerState"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment xml:lang="en">[COSEM] Shows the actual physical state of the device connection to the supply: (True) Connected, (False) Disconnected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ReactivePower">
+    <rdfs:label xml:lang="en">Reactive Power</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its reactive power</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasInputObjectType">
+    <rdfs:label xml:lang="en">has input object type</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">It identifies the type of the attribute of an instance (COSEM object) of a class from which the data is going to be obtained. The value of this property conforms to the range of an object property of SAREF4GRID</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasActivatePassiveCalendarTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb48">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasActionValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SpecialDayEntry">
+    <rdfs:label xml:lang="en">Special Day Entry</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/ComplexActionOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb51"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb50"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb52"/>
+    <rdfs:comment xml:lang="en">This class represents the parameters that are needed by an activity calendar for adding a new special day</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasCapturePeriod">
+    <rdfs:label xml:lang="en">has capture period</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ProfileGeneric"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment xml:lang="en">[COSEM] The capturing period of a profile generic in seconds. If its value is 0, then there is not automatic capturing; capturing is triggered externally or through capture events occur asynchronously. If its value is greater than 0, then automatic capturing is assumed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb37">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasWednesdayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasTimeZone">
+    <rdfs:label xml:lang="en">has time zone</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+    <rdfs:comment xml:lang="en">[COSEM] The deviation of local, normal time to UTC in minutes. The value depends on the geographical location of the meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb29">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasPresetTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb33">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasSeasonProfileName"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/obtainInputForProperty">
+    <rdfs:label xml:lang="en">obtain input for property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">It identifies the attribute of an instance (COSEM object) of a class from which the data is going to be obtained. The value of this property conforms to and object property or datatype property of SAREF4GRID</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/givenName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasDayId">
+    <rdfs:label xml:lang="en">has day id</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SpecialDayEntry"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment xml:lang="en">It defines the unique identifier of a day</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/EntryDescriptor">
+    <rdfs:label xml:lang="en">Entry Descriptor</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/SelectiveAccess"/>
+    <rdfs:comment xml:lang="en">In the case of a get service of a profile generic class a selective access can be specified. This indicates the range of entries to be retrieved from the profile generic class</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/VoltageSwellNumber">
+    <rdfs:label xml:lang="en">Voltage Swell Number</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating the number of voltage swells detected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSpecialDayProfile">
+    <rdfs:label xml:lang="en">has special day profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines when there is a festivity and therefore a normal day behaves as a special date</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasFirmware">
+    <rdfs:label xml:lang="en">has firmware</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/Firmware"/>
+    <rdfs:comment xml:lang="en">The firmware of the meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb51">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasSpecialDate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/storesScript">
+    <rdfs:label xml:lang="en">stores script</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ScriptTable"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/Script"/>
+    <rdfs:comment xml:lang="en">[COSEM] Specifies the different scripts which are stored in a script table</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasThursdayProfile">
+    <rdfs:label xml:lang="en">has thursday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Thursday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/PhaseAngle">
+    <rdfs:label xml:lang="en">Phase Angle</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its phase angle</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasObis">
+    <rdfs:label xml:lang="en">has obis</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">[COSEM] It identifies the instance (COSEM object) of a class. The value of this property conforms to OBIS. OBject Identification System (OBIS) provides a unique identifier for all data within the metering equipment, including not only measurement values, but also abstract values used for configuration or obtaining information about the behaviour of the metering equipment</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/executesScript">
+    <rdfs:label xml:lang="en">executes script</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/Script"/>
+    <rdfs:comment xml:lang="en">[COSEM] Defines the script to be executed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasStatus">
+    <rdfs:label xml:lang="en">has status</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/Clock"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment xml:lang="en">[COSEM] Status of the clock</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/SimpleActionOperationInput">
+    <rdfs:label xml:lang="en">Simple Action Operation Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb48"/>
+    <rdfs:comment xml:lang="en">This class indicates that the parameter needed by the action to operate is simple (i.e., integer, string, etc)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb19">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasVendorId"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb22">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasOutputObjectType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/oneM2M#OperationInput">
+    <rdfs:label xml:lang="en">Operation Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="https://git.onem2m.org/MAS/BaseOntology"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb45">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/obtainInputForProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSeasonStart">
+    <rdfs:label xml:lang="en">has season start</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">[COSEM] Starting time of the season profile. The current season profile is terminated by the starting time of the next season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/license">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasCalendarNameActive">
+    <rdfs:label xml:lang="en">has calendar name active</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">[COSEM] Used defined name identifying the passive calendar. Typically contains an identifier of the active calendar (currently active), which is descriptive to the set of scripts activated by the object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/PowerLine">
+    <rdfs:label xml:lang="en">Power Line</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <rdfs:comment xml:lang="en">Interconnected network for electricity delivery from producers to consumers</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GetOperationOutput">
+    <rdfs:label xml:lang="en">Get Operation Output</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/oneM2M#OperationOutput"/>
+    <rdfs:comment xml:lang="en">This class specifies the output of a get operation, which can be either a class or a datatype</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ScreenDisplay">
+    <rdfs:label xml:lang="en">Screen Display</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating information about its screen</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasActivatePassiveCalendarTime">
+    <rdfs:label xml:lang="en">has activate passive calendar time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">[COSEM] Defines the time when the passive calendar will be activated</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ActivityCalendar">
+    <rdfs:label xml:lang="en">Activity Calendar</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb1"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb3"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb2"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class allows handling various tariff structures in the meter. This class provides a list of scheduled actions, following the classical way of calendar-based schedules by defining seasons, weeks, etc</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/CosemOperationInput">
+    <rdfs:label xml:lang="en">Cosem Operation Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/oneM2M#OperationInput"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb15"/>
+    <rdfs:comment xml:lang="en">This class specifies the instance at which a service (get, set or action) is going to be executed by indicating the OBIS code</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb14">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasControlMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb38">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasThursdayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasOutputDataType">
+    <rdfs:label xml:lang="en">has output data type</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GetOperationDataOutput"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">It identifies the type of the attribute of an instance (COSEM object) of a class from which the data is going to be obtained. The value of this property conforms to the range of a datatype property of SAREF4GRID</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasCalendarNamePassive"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/LongPowerFailuresNumber">
+    <rdfs:label xml:lang="en">Long Power Failures Number</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating the number of long power failures detected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ActivePower">
+    <rdfs:label xml:lang="en">Active Power</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its active power</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasSeasonProfileName">
+    <rdfs:label xml:lang="en">has season profile name</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SeasonProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">[COSEM] User defined name identifying the current season profile</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/DurationVoltageSag">
+    <rdfs:label xml:lang="en">Duration Voltage Sag</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/QualityProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating the duration of the voltage sags detected</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb35">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasMondayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasDaylightSavingsEnd"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasControlState">
+    <rdfs:label xml:lang="en">has control state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/BreakerState"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment xml:lang="en">Shows the internal state of the disconnect control object: (0) Disconnected, (1) Connected, (2) Ready for reconnection</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/oneM2M#Service">
+    <rdfs:label xml:lang="en">Service</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="https://git.onem2m.org/MAS/BaseOntology"/>
+    <owl:equivalentClass rdf:resource="https://saref.etsi.org/core/Service"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/source">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/obtainFromEntry">
+    <rdfs:label xml:lang="en">obtain from entry</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/EntryDescriptor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedLong"/>
+    <rdfs:comment xml:lang="en">It defines the first entry to be retrieved from a profile generic</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb46">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasInputObjectType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasDaylightSavingsBegin"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ActionOperation">
+    <rdfs:label xml:lang="en">Action Operation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Operation"/>
+    <rdfs:comment xml:lang="en">This class is the means of an action service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices). It is the –machine interpretable- exposure of a –human understandable- Command to a network</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb44">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasInputObjectType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasControlMode">
+    <rdfs:label xml:lang="en">has control mode</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/BreakerState"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment xml:lang="en">[COSEM] Configures the behaviour of the disconnect control object for all triggers, i.e. the possible state transitions</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb26">
+    <owl:allValuesFrom rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb27"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/hasPropertyValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Network">
+    <rdfs:label xml:lang="en">Network</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its network information</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/PowerFactor">
+    <rdfs:label xml:lang="en">Power Factor</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its power factor</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb52">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasDayId"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb16">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasStartTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasNetworkInterface">
+    <rdfs:label xml:lang="en">has network interface</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/NetworkInterface"/>
+    <rdfs:comment xml:lang="en">The network interface of the meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb12">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasOutputState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/RegularDayProfile">
+    <rdfs:label xml:lang="en">Regular Day Profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/DayProfile"/>
+    <rdfs:comment xml:lang="en">This class represents normal dates</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasProfileGeneric">
+    <rdfs:label xml:lang="en">has profile generic</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/GridMeter"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/saref4grid/ProfileGeneric"/>
+    <rdfs:comment xml:lang="en">The profile generic of a meter</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasIndex">
+    <rdfs:label xml:lang="en">has index</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/SpecialDayEntry"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedShort"/>
+    <rdfs:comment xml:lang="en">It defines the index of the special day</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb21">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasOutputDataType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Current">
+    <rdfs:label xml:lang="en">Current</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its current</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/relatedPropertyValue">
+    <rdfs:label xml:lang="en">related property value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ProfileGeneric"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/PropertyValue"/>
+    <rdfs:comment xml:lang="en">The property value that is captured by a profile generic</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/familyName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/DemandRegister">
+    <rdfs:label xml:lang="en">Demand Register</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its demand register</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ComplexActionOperationInput">
+    <rdfs:label xml:lang="en">Complex Action Operation Input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4grid/CosemOperationInput"/>
+    <rdfs:comment xml:lang="en">This class indicates that the parameter needed by the action to operate is complex (i.e., structure)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasWednesdayProfile">
+    <rdfs:label xml:lang="en">has wednesday profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/saref4grid/hasDayProfile"/>
+    <rdfs:comment xml:lang="en">It defines the day profile valid each Wednesday of the season</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb47">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/hasInput"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://w3id.org/people/mpoveda">
+    <ns5:familyName>Poveda-Villalón</ns5:familyName>
+    <ns5:givenName>María</ns5:givenName>
+    <ns5:affiliation rdf:resource="https://www.upm.es/"/>
+    <rdf:type rdf:resource="http://schema.org/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/GetService">
+    <rdfs:label xml:lang="en">Get Service</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Service"/>
+    <rdfs:comment xml:lang="en">This class is a representation of a get function to a network that makes the function discoverable, registerable, remotely controllable by other devices in the network</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/name">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ActionService">
+    <rdfs:label xml:lang="en">Action Service</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Service"/>
+    <rdfs:comment xml:lang="en">This class is a representation of an action function to a network that makes the function discoverable, registerable, remotely controllable by other devices in the network. Actions can be performed over classes that are characterised by an OBIS code</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/hasCalendarNamePassive">
+    <rdfs:label xml:lang="en">has calendar name passive</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/saref4grid/ActivityCalendar"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">[COSEM] User defined name identifying the passive calendar. Typically contains an identifier of the passive calendar (will be activated), which is descriptive to the set of scripts activated by the object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ProfileStatus">
+    <rdfs:label xml:lang="en">Profile Status</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its profile generic status</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/affiliation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb27">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isValueOfProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.garcia-castro.com/foaf.rdf#me">
+    <ns5:familyName>García-Castro</ns5:familyName>
+    <ns5:givenName>Raúl</ns5:givenName>
+    <ns5:affiliation rdf:resource="https://www.upm.es/"/>
+    <rdf:type rdf:resource="http://schema.org/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb17">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/executesScript"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb41">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasSundayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Phase">
+    <rdfs:label xml:lang="en">Phase</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its phase</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/creator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb40">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasSaturdayProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb53">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasSpecialDayDate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/BillingPeriod">
+    <rdfs:label xml:lang="en">Billing Period</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter that indicates the period in which a given billing is being applied</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/oneM2M#OperationOutput">
+    <rdfs:label xml:lang="en">Operation Output</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="https://git.onem2m.org/MAS/BaseOntology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/NetworkInterface">
+    <rdfs:label xml:lang="en">Network Interface</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb28"/>
+    <rdfs:comment xml:lang="en">[COSEM] This class holds the MAC address of the physical device (or, more generally, of a device or software). There shall be an instance of this class for each network interface of the physical device</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/Quadrant">
+    <rdfs:label xml:lang="en">Quadrant</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/MeterProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the meter indicating its quadrant</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/title">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ReactiveEnergy">
+    <rdfs:label xml:lang="en">Reactive Energy</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its reactive energy</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd5b9cc4c4af04377b202f50ce018deecb30">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/saref4grid/hasValidityIntervalStart"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4grid/ActiveEnergy">
+    <rdfs:label xml:lang="en">Active Energy</rdfs:label>
+    <rdf:type rdf:resource="https://saref.etsi.org/saref4grid/EnergyAndPowerProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdfs:comment xml:lang="en">Property of the power line indicating its active energy</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/modified">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+</rdf:RDF>

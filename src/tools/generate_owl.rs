@@ -26,7 +26,7 @@ pub struct GenerateOwlOntologyResponse {
 pub fn tool_definition() -> McpTool {
     McpTool {
         name: "generate_owl_ontology".to_string(),
-        description: "Executes McGuinness 7-Step structuring logic (Steps 4-7: Classes/Hierarchy, Properties, Facets/Restrictions, Instances) and performs full W3C OWL 2 graph binding (owl:imports, rdfs:subClassOf, owl:equivalentClass) against base domain ontologies using horned-owl.".to_string(),
+        description: "Step 2 of 2: Executes McGuinness 7-Step structuring logic (Steps 4-7: Classes/Hierarchy, Properties, Facets/Restrictions, Instances) and performs full W3C OWL 2 graph binding (owl:imports, rdfs:subClassOf, owl:equivalentClass) against base domain ontologies using horned-owl. Emits serialized ontology in Turtle (default), JSON-LD, OFN, or RDF/XML.".to_string(),
         input_schema: json!({
             "type": "object",
             "properties": {
@@ -40,8 +40,8 @@ pub fn tool_definition() -> McpTool {
                 },
                 "format": {
                     "type": "string",
-                    "enum": ["ofn", "turtle", "rdfxml"],
-                    "description": "Output syntax format. Defaults to 'ofn' (OWL Functional Syntax)."
+                    "enum": ["turtle", "jsonld", "ofn", "rdfxml"],
+                    "description": "Output syntax format. Defaults to 'turtle' (Turtle .ttl). Also supports 'jsonld', 'ofn', and 'rdfxml'."
                 },
                 "classes": {
                     "type": "array",

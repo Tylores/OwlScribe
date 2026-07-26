@@ -14,10 +14,11 @@ Now supporting **Hybrid Domain Ontology Import**: seed PDF extraction with estab
 5. [MCP Tools Reference](#-mcp-tools-reference)
    - [`parse_pdf_to_terms`](#1-parse_pdf_to_terms)
    - [`generate_owl_ontology`](#2-generate_owl_ontology)
-6. [Industry Use Cases](#-industry-use-cases)
-7. [Best Practices & Recommendations](#-best-practices--recommendations)
-8. [Installation & MCP Registration](#-installation--mcp-registration)
-9. [Developer Quickstart & Testing](#-developer-quickstart--testing)
+6. [Agent System Prompt & Directives Guide](#-agent-system-prompt--directives-guide)
+7. [Industry Use Cases](#-industry-use-cases)
+8. [Best Practices & Recommendations](#-best-practices--recommendations)
+9. [Installation & MCP Registration](#-installation--mcp-registration)
+10. [Developer Quickstart & Testing](#-developer-quickstart--testing)
 
 ---
 
@@ -32,7 +33,7 @@ OwlScribe is architected as an asynchronous, zero-cost-abstraction Rust service 
            |                                                       ^
      (1) JSON-RPC                                            (4) JSON-RPC
    parse_pdf_to_terms                                    generate_owl_ontology
- (with Base Ontology Seed)                             (with Graph Mappings & Imports)
+ (with Interactive Guidance)                            (with Graph Mappings & Imports)
            |                                                       |
            v                                                       v
 +-----------------------+                               +---------------------------+
@@ -40,21 +41,22 @@ OwlScribe is architected as an asynchronous, zero-cost-abstraction Rust service 
 |  - Spec Profiles      |                               |  - McGuinness Steps 4-7   |
 |  - Term Harvester     |                               |  - Base Graph Merger      |
 |  - Concept Matcher    |                               |  - Horned-Owl AST Builder |
-|  - Base Recommender   |                               |  - Serializer (OFN/TTL)   |
+|  - Base Recommender   |                               |  - Serializer (TTL/JSON-LD)|
 +-----------------------+                               +---------------------------+
            |                                                       |
            v                                                       v
    McGuinness Steps 1-3                                  Validated OWL 2 Ontology
- (Domain, Scope, Seed Terms)                           (OFN / Turtle / RDF-XML)
+ (Domain, Scope, Seed Terms)                         (Turtle / JSON-LD / OFN / RDF-XML)
 ```
 
 ### Key Architectural Strengths
 - **Type-Safe AST Execution**: Uses `horned-owl` (v2.1) to guarantee that generated ontologies strictly satisfy W3C OWL 2 structural and semantic invariants.
-- **Hybrid Base Ontology Seeding**: Ingests base domain ontologies (OWL Functional Syntax `.ofn` or JSON seeds) to ground PDF extraction terminology (e.g. mapping "Sensing Unit" to `sosa:Sensor`).
+- **Hybrid Base Ontology Seeding**: Ingests base domain ontologies (Turtle `.ttl`, JSON-LD `.jsonld`, OWL Functional Syntax `.ofn`, RDF/XML `.rdf`) to ground PDF extraction terminology (e.g. mapping IEEE 1547 terms to `saref4grid` or SOSA).
+- **Interactive Guidance for Unseeded Extraction**: Provides structured `interactive_guidance` and recommended base ontology links (e.g. SAREF4GRID for IEEE 1547 smart grid standards) when parsed without prior seeding.
 - **Post-Extraction Graph Binding**: Executes W3C `owl:imports`, `owl:equivalentClass`, and `rdfs:subClassOf` graph alignment post-harvesting.
 - **Specification Profile Heuristics**: Custom section parsers for ISO, IEEE, W3C, NIST, and RFC documents to locate normative terminology clauses.
 - **RFC 2119 Normative Keyword Extraction**: Automatically scans and tags requirement keywords (`MUST`, `SHALL`, `SHOULD`, `MAY`).
-- **Multi-Format Serialization**: Supports OWL Functional Syntax (`.ofn`), Turtle (`.ttl`), and RDF/XML (`.owl`).
+- **Multi-Format Serialization**: Emits Turtle (`.ttl` - default standard), JSON-LD (`.jsonld`), OWL Functional Syntax (`.ofn`), and RDF/XML (`.owl`).
 
 ---
 
@@ -227,6 +229,31 @@ Accepts structured McGuinness input (Steps 4–7), imports base domain graphs, a
   "serialized_ontology": "Prefix(:=<http://example.org/ieee2026#>)\nOntology(<http://example.org/ieee2026#>\nImport(<http://www.w3.org/ns/sosa/>)\nDeclaration(Class(:SensingUnit))\nEquivalentClasses(:SensingUnit <http://www.w3.org/ns/sosa/Sensor>)\n...)"
 }
 ```
+
+---
+
+## 🤖 Agent System Prompt & Directives Guide
+
+When directing an AI agent (such as Claude, Antigravity Agent, or GPT-4) to translate technical specification PDFs into OWL ontologies using OwlScribe MCP tools, inject the following system directive to eliminate multi-turn reasoning overhead:
+
+### Recommended Agent System Directive
+```text
+You have access to the OwlScribe MCP tools: `parse_pdf_to_terms` and `generate_owl_ontology`.
+Follow this strict two-step execution workflow without multi-turn overthinking:
+1. STEP 1: Execute `parse_pdf_to_terms(pdf_path=...)`.
+   - Read `interactive_guidance` in the response payload.
+   - If unseeded, inspect `suggested_base_ontologies` (e.g., SAREF4GRID https://saref.etsi.org/saref4grid/ for IEEE 1547 / smart grid specs, SOSA, QUDT).
+   - If a recommended base ontology is available and desired, you may re-run `parse_pdf_to_terms` with `base_ontology_path` or `base_ontology_seed`.
+2. STEP 2: Immediately execute `generate_owl_ontology`.
+   - Pass `ontology_iri`, `classes` (extracted from Step 1 candidates), `object_properties`, `data_properties`, and `class_mappings`.
+   - Default format is `"turtle"` (.ttl). Also supports `"jsonld"`, `"ofn"`, and `"rdfxml"`.
+   - Do NOT spend multiple turns speculating; execute Step 1 then Step 2 directly.
+```
+
+### IEEE 1547 / Smart Grid Interactive Guidance Example
+When parsing IEEE 1547 or DER standards without a base ontology seed:
+1. `parse_pdf_to_terms` returns an `interactive_guidance` object flagging `"unseeded_extraction"` and suggesting `https://saref.etsi.org/saref4grid/`.
+2. The agent reads `interactive_guidance.recommended_actions` and proceeds directly to `generate_owl_ontology` with class mappings to SAREF4GRID (`https://saref.etsi.org/saref4grid/DER` or `https://saref.etsi.org/saref4grid/PowerProperty`).
 
 ---
 

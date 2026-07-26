@@ -1,0 +1,2315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+   xmlns:vann="http://purl.org/vocab/vann/"
+>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b280">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b281"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Command">
+    <rdfs:label xml:lang="en">Command</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b177"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b178"/>
+    <rdfs:comment xml:lang="en">The lowest-level directives a function exposes to some network. Commands can target (OP saref:targets and its sub-properties) features, properties, or states. An instance of saref:Command is independent of any device.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Simplified definition and axiomatization of saref:Command. Added examples.</skos:historyNote>
+    <skos:example xml:lang="en">Observe property, control property, observe state, control state, invoke action, cancel action, turn on or off, change color, subscribe, publish, etc. are all commands.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasFeatureKind">
+    <rdfs:label xml:lang="en">has feature kind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b54"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduce hasClassKind for Class is Feature, Device, Property, State, Function, Command.</skos:historyNote>
+    <rdfs:comment xml:lang="en">links a feature of interest to its kind, a feature kind</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b252">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b253"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b214">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasMandatoryCommand">
+    <rdfs:label xml:lang="en">has mandatory command</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Function"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b185"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced mandatory and optional commands.</skos:historyNote>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/hasCommand"/>
+    <rdfs:comment xml:lang="en">Links a function and one of its mandatory commands</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b64">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Task"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasOptionalCommand">
+    <rdfs:label xml:lang="en">has optional command</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Function"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/hasCommand"/>
+    <rdfs:comment xml:lang="en">Links a function and one of its optional commands</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/profileHasPrice">
+    <rdfs:label xml:lang="en">has price</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Profile"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/PropertyValue"/>
+    <rdfs:comment xml:lang="en">Links a profile to the money earned (negative values) or paid (positive values) for the use (production or consumption) of the commodity by the device</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b20">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b21"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b102">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b217">
+    <owl:allValuesFrom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b218"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/represents"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/PropertyOfInterest">
+    <rdfs:label xml:lang="en">Property of Interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b259"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b110"/>
+    <skos:note xml:lang="en">Properties of interest need not always be explicited. It depends on the use case. Typically, properties of interest are useful in applications, where the association between a feature of interest and a property (i.e., the property of interest) needs to be identified and related to other properties of interest.</skos:note>
+    <skos:note xml:lang="en">A property of interest is the property of (OP saref:isPropertyOfInterestOf) exactly one feature of interest.</skos:note>
+    <skos:note xml:lang="en">Per convention, the IRI of properties of interest should consist of the IRI of their feature of interest, suffixed with a fragment identifier #{P} where {P} refers to the name of the property.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:PropertyOfInterest to solved the ambiguity between generic vs specific properties.</skos:historyNote>
+    <skos:example xml:lang="en">The air temperature of the atmosphere sample at a certain location and altitude, the received signal strength indicator of an wireless IoT connection, the luminance of the ETSI ATHENA amphitheatre.
+
+&lt;etsi_premises/athena#luminance&gt; a saref:PropertyOfInterest ;
+    saref:isPropertyOfInterestOf &lt;etsi_premises/athena&gt; ;
+    saref:hasPropertyKind saref:Luminance ;
+    rdfs:comment "The luminance of amphitheatre ATHENA"@en .
+</skos:example>
+    <rdfs:comment xml:lang="en">Identifiable qualities of features of interest that can be target of devices, such as observed or controlled. An instance of saref:PropertyOfInterest is specific to a feature of interest. It is inherent to and cannot exist without that feature of interest.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/FeatureKind">
+    <rdfs:label xml:lang="en">Feature kinds</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b52"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b53"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b56"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced class saref:FeatureKind</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: Use SKOS to organize generic classes in taxonomies.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Feature kinds allow to describe kinds of features of interest, with common properties having the same value, and common states being the same. An instance of saref:FeatureKind represents an archetype of real world entities, for example to populate product catalogs.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b145">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#note">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b4"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b238">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasCommandKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b18">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b19"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isProducedBy">
+    <rdfs:label xml:lang="en">is produced by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/produces"/>
+    <rdfs:comment xml:lang="en">Links a commodity to the feature kind, feature of interest, or device, that produces it</rdfs:comment>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Commodity"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b83"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasPropertyValue">
+    <rdfs:label xml:lang="en">has property value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b117"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/PropertyValue"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b121"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasPropertyValue.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a feature kind, a feature of interest, or a property of interest, to a property value.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/FeatureOfInterest">
+    <rdfs:label xml:lang="en">Feature of interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b57"/>
+    <rdfs:comment xml:lang="en">A feature of interest represents any real world entity from which a property or a state may be targeted, such as observed and controlled. An instance of saref:FeatureOfInterest represents one specific real world entity.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of saref:FeatureOfInterest is clarified, not only properties are measured, but properties and states can be observed and controlled.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of saref:FeatureOfInterest: Clarify it's a specific real world entity.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of saref:FeatureOfInterest: allValuesFrom axioms are unnecessary and have been deleted.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Service">
+    <rdfs:label xml:lang="en">Service</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b216"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b211"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b215"/>
+    <rdfs:comment xml:lang="en">A saref:Service is a digital representation of a function in a network, making it discoverable, registerable and remotely controllable in the network.</rdfs:comment>
+    <skos:note xml:lang="en">Typically, a device connected to a given network offers one service for each of its functions of interest.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Simplified definition of saref:Service. Added examples.</skos:historyNote>
+    <skos:example xml:lang="en">For example, a light switch can offer the service of remotely switching the lights in a home through mobile phone devices that are connected to the local network (ex:SwitchOnService class). This "remote switching" service represents the ex:OnOffFunction.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isConsumedBy">
+    <rdfs:label xml:lang="en">is consumed by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/consumes"/>
+    <rdfs:comment xml:lang="en">Links a commodity to the feature kind, feature of interest, or device, that consumes it</rdfs:comment>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Commodity"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b73"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Property">
+    <rdfs:label xml:lang="en">Property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b98"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b254"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b99"/>
+    <rdfs:comment xml:lang="en">Identifiable qualities of features of interest that can be target of devices, such as observed or controlled. A property can apply to different features of interest.</rdfs:comment>
+    <skos:note xml:lang="en">Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of saref:Property.</skos:note>
+    <skos:historyNote xml:lang="en">Until SAREF V3.1.1, there was an ambiguity between whether properties should be specific or generic to features of interest. This ambiguity has been solved in SAREF V3.2.1, and the new modeling will be enforced in the next major revision of SAREF.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: The definition and scope of usage for saref:Property is clarified. Axiomatization is simplified.</skos:historyNote>
+    <skos:example xml:lang="en">Two examples using the QUDT Quantity Kind vocabulary, and the British Oceanographic Data Centre Parameter Usage Vocabulary.
+
+&lt;https://qudt.org/2.1/vocab/quantitykind/ActiveEnergy&gt; a saref:Property ;
+    rdfs:label "Active Energy"@en ;
+    rdfs:comment ""Active Energy" is the electrical energy transformable into some other form of energy."@en .
+
+&lt;http://vocab.nerc.ac.uk/collection/P01/current/CDTSZZ01/&gt; a saref:Property ;
+    skos:prefLabel "Absolute temperature standard deviation of the atmosphere by dry bulb thermometer"@en .
+</skos:example>
+    <skos:example xml:lang="en">Air temperature, pressure, luminance, etc. are all properties.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b173">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b174"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFunctionKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b184">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasTimestamp">
+    <rdfs:label xml:lang="en">has timestamp</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Links a procedure execution or a profile to an instant.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b223"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <skos:note xml:lang="en">Applied on a profile, it describes the applicable instant of that profile</skos:note>
+    <skos:note xml:lang="en">When the execution time and the phenomenon time are the same time instants, then DP saref:hasTimestamp can be used to simply link a procedure execution to the time of these instants, expressed as an xsd:dateTime literal.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Tried to clarify definition of saref:hasTimestamp. Still unclear.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isProfileOf">
+    <rdfs:label xml:lang="en">is profile of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Profile"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasProfile"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b246"/>
+    <rdfs:comment xml:lang="en">Links a profile to the device it describes. The device should be linked to a certain commodity using OP saref:consumes, saref:produces, or saref:stores, and optionally to some property or state using OP saref:targets or its sub-properties.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasCommand">
+    <rdfs:label xml:lang="en">has command</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b179"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isCommandOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Command"/>
+    <rdfs:comment xml:lang="en">Links a function or function of interest and the command it supports.</rdfs:comment>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b201"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b187"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Domain of saref:hasCommand is relaxed to saref:Function or saref:FunctionOfInterest.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/consumes">
+    <rdfs:label xml:lang="en">consumes</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isConsumedBy"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:consumes, saref:isConsumedBy, saref:produces, saref:isProducedBy, saref:stores, saref:isStoredBy.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a feature kind, feature of interest, or device, to the commodity it consumes</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b68"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Commodity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isPropertyOfInterestOf">
+    <rdfs:label xml:lang="en">is property of interest of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasPropertyOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <rdfs:comment xml:lang="en">Links a property of interest to the feature of interest it is a property of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b66">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Commodity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/DeviceKind">
+    <rdfs:label xml:lang="en">Device kinds</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b1"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b2"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <skos:historyNote xml:lang="en">V4.1.1: Use SKOS to organize generic classes in taxonomies.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V4.1.1: Introduced class saref:DeviceKind</skos:historyNote>
+    <rdfs:comment xml:lang="en">Device kinds allow to describe kinds of devices, with common properties and common states having the same value, targeting the same properties and states, common functions, and common services. Devices kinds may be used to describe models of devices in online catalogues.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b143">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isStateOfInterestOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/produces">
+    <rdfs:label xml:lang="en">produces</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isProducedBy"/>
+    <rdfs:comment xml:lang="en">Links a feature kind, feature of interest, or device, to the commodity it produces</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b78"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Commodity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/madeBy">
+    <rdfs:label xml:lang="en">made by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/madeExecution"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduce saref:madeBy (resp. saref:madeExecution) as generalization of saref:measurementMadeBy (resp. saref:makesMeasurement).</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a procedure execution to the entity (e.g., device) that made it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/FunctionOfInterest">
+    <rdfs:label xml:lang="en">Function of Interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b172"/>
+    <skos:note xml:lang="en">A function of interest is the function of (OP saref:isFunctionOfInterestOf) exactly one device.</skos:note>
+    <skos:note xml:lang="en">Functions of interest need not always be explicited. It depends on the use case. Typically, functions of interest are useful to specify which command is actually exposed, and which actual property of interest or state of interest it targets.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:FunctionOfInterest, parallel to saref:PropertyOfInterest.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Logical groups of commands that devices support to accomplish their tasks. Function can target (OP saref:targets and its sub-properties) features, properties, or states. An instance of saref:FunctionOfInterest is supported by exactly one device.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isValueOfProperty">
+    <rdfs:label xml:lang="en">is value of property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/PropertyValue"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b123"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b128"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:isValueOfProperty.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a property value to the property or property of interest it is a value of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/accomplishes">
+    <rdfs:label xml:lang="en">accomplishes</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isAccomplishedBy"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Task"/>
+    <rdfs:comment xml:lang="en">Links a certain entity (e.g., a device) to the task it accomplishes.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b265">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/UnitOfMeasure">
+    <rdfs:label xml:lang="en">Unit of measure</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">The unit of measure is a standard for measurement of a quantity, such as a Property.</rdfs:comment>
+    <skos:note xml:lang="en">Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of saref:UnitOfMeasure. For example the QUDT Unit vocabulary</skos:note>
+    <skos:note xml:lang="en">Our definition is based on the definition of unit of measure in the Ontology of units of Measure (OM).</skos:note>
+    <skos:example xml:lang="en">For example, consumption power is a property and Watt is a unit of power that represents a definite predetermined power: when we say 10 Watt, we actually mean 10 times the definite predetermined power "Watt".</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Operation">
+    <rdfs:label xml:lang="en">Operation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b222"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b217"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b221"/>
+    <skos:note xml:lang="en">Typically, a device connected to a given network offers one service for each of its functions of interest, and each service has one operation per command of interest of the function of interest it represents.</skos:note>
+    <skos:note xml:lang="en">An operation may be described in terms of its inputs and outputs using OP saref:hasInput and saref:hasOutput. Inputs and outputs of operations typically describe the expected schema or shape of network messages.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:Operation and associated properties from oneM2M base ontology.</skos:historyNote>
+    <skos:example xml:lang="en">In the set of operations exposed by a smart light bulb on a given network, one may be dedicated to turn on and off the light and expect a boolean as input. Another one may be dedicated to set the luminosity status and expect a target luminosity level (a byte) and a transition time (encoded on two bytes).</skos:example>
+    <skos:example xml:lang="en">To turn on a light, send a CoAP PUT request with CBOR content 0xf5 (true)</skos:example>
+    <skos:example xml:lang="en">In the set of operations exposed by a smart washing machine on a given network, one may be dedicated to set the water temperature for the washing cycle, and expected as input a enumerated value. Another one may be dedicated to start, pause, or stop the washing cycle.</skos:example>
+    <rdfs:comment xml:lang="en">A saref:Operation is the means of a service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices). It is the –machine interpretable– exposure of a –human understandable– command to a network.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasManufacturer">
+    <rdfs:label xml:lang="en">has manufacturer</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">A relationship identifying the manufacturer of an entity (e.g., device). The value is expected to be a string or a string with language tag.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b58"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Defined domain of saref:hasManufacturer to union of feature kind and feature of interest.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b171">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasStateOfInterest">
+    <rdfs:label xml:lang="en">has state of interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isStateOfInterestOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasStateOfInterest and saref:isStateOfInterestOf, parallel to saref:hasPropertyOfInterest and saref:isPropertyOfInterestOf.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a feature of interest to one of its states of interest.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b207">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b208"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/observes">
+    <rdfs:label xml:lang="en">observes</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b33"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isObservedBy"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced property saref:observes, as sub-property of saref:targets. and generalization of measures.</skos:historyNote>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/targets"/>
+    <rdfs:comment xml:lang="en">Links a device, function, command, or procedure execution, to the feature, property, or state, it observes.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b126">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b127"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Profile">
+    <rdfs:label xml:lang="en">Profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">A saref:Profile describes the money earned (negative values) or paied (positive values) for the use (production or consumption) of a commodity by a device in a certain context.</rdfs:comment>
+    <skos:note xml:lang="en">The applicable context can be restricted to when a feature of interest has a certain state (OPs saref:whenState).</skos:note>
+    <skos:note xml:lang="en">The applicable context of a profile can be bound temporally using DP saref:hasTimestamp or its subproperties defined by SAREF extensions, or OP saref:hasApplicableTime which links to instant or interval or other compound temporal entity expressed using OWL Time.</skos:note>
+    <skos:note xml:lang="en">OP saref:hasPrice links a profile to the money earned (negative values) or paid (positive values) for the use (production or consumption) of the commodity by the device.</skos:note>
+    <skos:note xml:lang="en">The applicable context can be restricted to when the property of a feature of interest has some value (OPs saref:whenPropertyValue)</skos:note>
+    <skos:note xml:lang="en">OP saref:hasProfile links a device to its profile. The device should be linked to a certain commodity using OP saref:consumes, saref:produces, or saref:stores, and optionally to some property or state using OP saref:targets or its sub-properties.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Class saref:Profile has been re-specified, to take into account findings from SAREF4ENER V1.2.1.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b159">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasStateKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/CommandOfInterest">
+    <rdfs:label xml:lang="en">Command Of Interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b198"/>
+    <skos:note xml:lang="en">Like for commands, commands of interest may be described in terms of their input parameters, outputs, and which properties or states they target.</skos:note>
+    <skos:note xml:lang="en">Commands of interest need not always be explicited. It depends on the use case. Typically, commands of interest are useful to specify the actual property of interest or state of interest that is expected as input parameter, output, or that will be targeted.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:CommandOfInterest, parallel to saref:PropertyOfInterest.</skos:historyNote>
+    <skos:example xml:lang="en">The smart fridge supports a command of kind “observe temperature”, which observes the temperature of the fridge.</skos:example>
+    <skos:example xml:lang="en">The corridor smart light switch supports a command of kind “turn on/off”, which controls the state of the outdoor light.</skos:example>
+    <rdfs:comment xml:lang="en">The lowest-level directives a device supports and exposes to some network. Commands can target (OP saref:targets and its sub-properties) features, properties, or states. A saref:CommandOfInterest is a directives actually supported by a device and exposed to some network.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b136">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b137"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isMeasuredIn">
+    <rdfs:label xml:lang="en">is measured in</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/UnitOfMeasure"/>
+    <rdfs:comment xml:lang="en">A relationship identifying the unit of measure used for a certain entity.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Relaxed domain of saref:isMeasuredIn so it can apply to saref:PropertyValue as well as saref:Measurement. The new range will be enforced in the next major revision of SAREF.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b203">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b204"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Actuation">
+    <rdfs:label xml:lang="en">Actuation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b241"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b242"/>
+    <rdfs:comment xml:lang="en">A saref:Actuation is the act of carrying out a procedure to control the state of the world using an actuator. It links to an actuator to describe what made the actuation, and to the controlled feature, property, property of interest, state, or state of interest. Typically, its input is a property value or a state. An actuation of a state (OP saref:controls) should have a state as input (OP saref:hasInput). Respectively, an actuation of a property should have a property value as input.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b232">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b233"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasOperation">
+    <rdfs:label xml:lang="en">has operation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Service"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isOperationOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Operation"/>
+    <rdfs:comment xml:lang="en">Links a service to one of its operations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Sensor">
+    <rdfs:label xml:lang="en">Sensor</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b49"/>
+    <rdfs:comment xml:lang="en">A device designed to observe and measure one or more properties or states of one or more features of interest.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of Sensor is simplified and grounded on saref:observes. Local restriction on saref:hasFunction is deleted.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V4.1.1: Definition of Sensor and Meter are updated to better distinguish one from the other.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isStateOf">
+    <rdfs:label xml:lang="en">is state of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/State"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasState"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b136"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:isStateOf.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a state to the feature kind or feature of interest it is a state of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Actuator">
+    <rdfs:label xml:lang="en">Actuator</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b50"/>
+    <rdfs:comment xml:lang="en">A device designed to control one or more properties or states of one or more features of interest.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of Actuator is simplified and grounded on saref:controls. Local restriction on saref:hasFunction is deleted.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b95">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b96"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isAccomplishedBy">
+    <rdfs:label xml:lang="en">is accomplished by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Task"/>
+    <rdfs:comment xml:lang="en">A relationship identifying an entity (e.g., a device) that can accomplish a task.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/accomplishes"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/publisher">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isValueOfState">
+    <rdfs:label xml:lang="en">is value of state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/StateValue"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b154"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b158"/>
+    <skos:historyNote xml:lang="en">V4.1.1: Introduced saref:isValueOfState.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a state value to the state or state of interest it is a value of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasOutput">
+    <rdfs:label xml:lang="en">has output</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b194"/>
+    <skos:example xml:lang="en">Different complementary commands can be defined for observing a smart home. Observe the temperature once will output the indoor temperature property; observe status of the entry door will output an open/close state.</skos:example>
+    <rdfs:comment xml:lang="en">Links a command or operation to its outputs.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b31">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b32"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b144">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b145"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasStateKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/issued">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isExecutionOf">
+    <rdfs:label xml:lang="en">is execution of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b226"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b237"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b235"/>
+    <rdfs:comment xml:lang="en">Links a command execution to the command or command of interest that was executed. Also liks an operation execution to the operation that was executed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b216">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isOfferedBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b120">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b115">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/hasValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b179">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b180"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b53">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Commodity">
+    <rdfs:label xml:lang="en">Commodity</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">A marketable item which may be supplied without qualitative differentiation.</rdfs:comment>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b67"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b66"/>
+    <skos:note xml:lang="en">SAREF refers to energy commodities such as electricity, gas, coal and oil.</skos:note>
+    <skos:note xml:lang="en">Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of saref:Commodity, for example from the ISDA taxonomy of commodities, the Standard International Energy product Classification (SIEC), the IRENA Energy Taxonomy or Wikidata.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of saref:Commodity is simplified.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V4.1.1: Removed examples of commodity categories.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b180">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b181"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasIdentifier">
+    <rdfs:label xml:lang="en">has identifier</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:seeAlso rdf:resource="https://labs.etsi.org/rep/saref/saref-portal/-/issues/2"/>
+    <rdfs:comment xml:lang="en">Links some entity to its identifier. Extensions of SAREF may define sub-properties such as s4abcd:hasUUID, s4abcd:hasGTIN12, etc.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasProperty">
+    <rdfs:label xml:lang="en">has property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b100"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isPropertyOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdfs:comment xml:lang="en">Links a feature kind or a feature of interest to one of its properties.</rdfs:comment>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b252"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b108"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b113"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b106"/>
+    <skos:historyNote xml:lang="en">V3.2.1: applicability of saref:hasProperty is relaxed to also saref:FeatureKind</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasFunctionKind">
+    <rdfs:label xml:lang="en">has function kind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Function"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b173"/>
+    <rdfs:comment xml:lang="en">links a function of interest to its kind, a function</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b63">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b245">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Function">
+    <rdfs:label xml:lang="en">Function</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b160"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b161"/>
+    <rdfs:comment xml:lang="en">Logical groups of commands that devices support to accomplish their tasks. Function can target (OP saref:targets and its sub-properties) features, properties, or states. An instance of saref:Function can apply to different devices.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Simplified definition and axiomatization of saref:Function. Added examples.</skos:historyNote>
+    <skos:example xml:lang="en">To accomplish the task of washing clothes, a washing machine should have a function for washing.</skos:example>
+    <skos:example xml:lang="en">To accomplish the task of controlling the light, a smart light switch may have a function for turning on and off the light, and another to set the luminosity of the light.</skos:example>
+    <skos:example xml:lang="en">To accomplish the task of sensing the temperature, a temperature sensor should have a sensing function.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isStateOfInterestOf">
+    <rdfs:label xml:lang="en">is state of interest of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasStateOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <rdfs:comment xml:lang="en">Links a state of interest to the feature of interest it is a state of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b272">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b273"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasState">
+    <rdfs:label xml:lang="en">has state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b132"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/State"/>
+    <rdfs:comment xml:lang="en">Links a feature kind or a feature of interest to one of its states.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isStateOf"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b139"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b141"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b146"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Relaxed domain of saref:hasState.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/whenState">
+    <rdfs:label xml:lang="en">when state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Profile"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/State"/>
+    <rdfs:comment xml:lang="en">Links a profile to a state that contributes to restricting its applicable context.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b275">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b276"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/consistsOf">
+    <rdfs:label xml:lang="en">consists of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">A relationship indicating a composite entity that consists of other entities (e.g., a temperature/humidity sensor that consists of a temperature sensor and a humidity sensor)</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Add local restrictions on consistsOf on feature of interest</skos:historyNote>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b266"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b282"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b268"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b284"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b280"/>
+    <skos:note xml:lang="en">A feature kind (respectively a feature of interest) may consist of (OP saref:consistsOf) other feature kinds (respectively feature kinds or features of interest).</skos:note>
+    <skos:note xml:lang="en">The OP saref:consistsOf can link a composite property, property of interest, or property value to its individual components.</skos:note>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b43">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b44"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Actuator"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b13">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b14"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b228">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b229"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Meter">
+    <rdfs:label xml:lang="en">Meter</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b51"/>
+    <rdfs:comment xml:lang="en">A device designed to observe and additionally do some computation and/or display one or more properties of one or more features of interest.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of Meter is simplified and grounded on saref:observes. Local restriction on saref:hasFunction is deleted.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V4.1.1: Definition of Sensor and Meter are updated to better distinguish one from the other.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b264">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b265"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b75">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b76"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b56">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b244">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b245"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isPropertyOf">
+    <rdfs:label xml:lang="en">is property of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b103"/>
+    <rdfs:comment xml:lang="en">Links a property to the feature kind or feature of interest it is a property of.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b85">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b86"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b103">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b104"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/represents">
+    <rdfs:label xml:lang="en">represents</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b203"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b206"/>
+    <rdfs:comment xml:lang="en">Links a service to some function or function of interest it exposes to the network. Also links an operation to some command or command of interest it exposes to the network.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Relaxed domain and range of saref:represents.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/stores">
+    <rdfs:label xml:lang="en">stores</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isStoredBy"/>
+    <rdfs:comment xml:lang="en">Links a feature kind, feature of interest, or device, to the commodity it stores</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b88"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Commodity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b259">
+    <owl:allValuesFrom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b260"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b178">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Command"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/State">
+    <rdfs:label xml:lang="en">State</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Identifiable conditions that features of interest are or may be in, and that can be target of devices, such as observed and controlled. A state can apply to different features of interest.</rdfs:comment>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b130"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b131"/>
+    <skos:note xml:lang="en">Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of saref:State.</skos:note>
+    <skos:note xml:lang="en">SAREF is not restricted to binary states such as the ex:OnOffState, but allows to define also enumerated states.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Clarified and generalized definition of saref:State. Can now apply to all features of interest, not just devices.</skos:historyNote>
+    <skos:example xml:lang="en">A switch can be found in the saref:OnOffState.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b211">
+    <owl:allValuesFrom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b212"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/represents"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b205">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Operation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b151">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b241">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Actuator"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/madeBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b131">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/State"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b169">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isObservedBy">
+    <rdfs:label xml:lang="en">is observed by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/observes"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/isTargetOf"/>
+    <rdfs:comment xml:lang="en">Links a feature, property, or state, to the device, function, command, or procedure execution, that observes it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b213">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b214"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Device">
+    <rdfs:label xml:lang="en">Device</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4syst/System"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <rdfs:comment xml:lang="en">A tangible object designed to accomplish a particular task. In order to accomplish this task, the device performs one or more functions. An instance of saref:Device represents one specific real world entity.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Most axioms on saref:Device were useless and have been deleted.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: saref:Device is explicitly a subclass of saref:FeatureOfInterest and s4syst:System.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: definition of saref:Device clarifies it's a real world entity.</skos:historyNote>
+    <skos:example xml:lang="en">Examples of devices are a light switch, a temperature sensor, an energy meter, a water flow meter, and a laundry dryer. A laundry dryer is designed to dry laundry, and to accomplish this task it has a start/stop function.</skos:example>
+    <skos:example xml:lang="en">For example, a washing machine is designed to wash (task) and to accomplish this task it performs a start and stop function.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b8">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b9"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b91">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b92"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b189">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b190"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasCommandOfInterest">
+    <rdfs:label xml:lang="en">has command of interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isCommandOfInterestOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+    <rdfs:comment xml:lang="en">Links a function of interest to one of its commands of interest.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b221">
+    <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minQualifiedCardinality>
+    <owl:onClass rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/represents"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isTargetOf">
+    <rdfs:label xml:lang="en">is target of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b18"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/targets"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b25"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced property saref:isActedUponBy.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V4.1.1: Renamed property saref:isActedUponBy into saref:isTargetOf.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a feature, property, or state, to the device, function, command, or procedure execution, that targets it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b224">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b225"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b210">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/saref4syst/System">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasStateKind">
+    <rdfs:label xml:lang="en">has state kind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/State"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b144"/>
+    <rdfs:comment xml:lang="en">links a state of interest to its kind, a state</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b47">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b48"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b25">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b26"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b58">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b59"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b236">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b2">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isFunctionOf">
+    <rdfs:label xml:lang="en">is function of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Function"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasFunction"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b165"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:isFunctionOf.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a function to the feature kind or device it is a function of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isCommandOfInterestOf">
+    <rdfs:label xml:lang="en">is command of interest of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasCommandOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+    <rdfs:comment xml:lang="en">Links a command of interest to the function of interest it is a command of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b201">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b202"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasCommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b162">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b163"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasInput">
+    <rdfs:label xml:lang="en">has input</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b189"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasInput and saref:hasOutput.</skos:historyNote>
+    <skos:example xml:lang="en">Different complementary commands can be defined for controlling a light. Turn on or off the light based on a desired state, toggle the light status of a specific light, set the luminosity level with a transition time, set the default transition time, start comfort.</skos:example>
+    <rdfs:comment xml:lang="en">Links a command, operation, or procedure execution, to its inputs.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b132">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b133"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b149">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b150"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b255">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b256"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b140">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Task">
+    <rdfs:label xml:lang="en">Task</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">The goal for which a device is designed, from a user perspective.</rdfs:comment>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b65"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b64"/>
+    <skos:note xml:lang="en">Tasks can be accomplished by devices (saref:isAccomplishedBy).</skos:note>
+    <skos:example xml:lang="en">For example, a washing machine is designed for the task of washing.</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b150">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b151"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b248">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b1">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b200">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/madeExecution">
+    <rdfs:label xml:lang="en">made execution</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/madeBy"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:comment xml:lang="en">Links an entity (e.g., device) to the procedure execution it made.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b98">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/license">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/PropertyValue">
+    <rdfs:label xml:lang="en">Property Value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b115"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b116"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b270"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:PropertyValue to simplify the association of a measure to a property, without always needing it to be a measurement made by a device.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V4.1.1: saref:hasValue is now optional on saref:PropertyValue.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Describes the value for a property. The property value is optionally linked to its value expressed as an RDF literal (DP saref:hasValue), optionally to the unit of measurement (OP saref:isMeasuredIn), and optionally to the properties or properties of interest it is a value of (OP saref:isValueOfProperty).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasFunctionOfInterest">
+    <rdfs:label xml:lang="en">has function of interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Device"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isFunctionOfInterestOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+    <rdfs:comment xml:lang="en">Links a device to one of its functions of interest.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b122">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasPropertyValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/targets">
+    <rdfs:label xml:lang="en">targets</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b3"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b11"/>
+    <skos:historyNote xml:lang="en">V4.1.1: saref:actsUpon is renamed saref:targets.</skos:historyNote>
+    <skos:historyNote xml:lang="en">V3.2.1: saref:actsUpon now holds not only between a command and a state. It generalizes observes, observes, controls. Domain and range are unions of several classes.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a device, function, command, or procedure execution, to the feature, property, or state, it targets.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b76">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b77"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b247">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b248"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b61">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b62"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Appliance">
+    <rdfs:label xml:lang="en">Appliance</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:comment xml:lang="en">A device designed to accomplish a particular task for occupant use. It consumes, produces, or stores, some commodity.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Definition of saref:Appliance is grounded on tasks and commodities.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/StateValue">
+    <rdfs:label xml:lang="en">State Value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:historyNote xml:lang="en">V4.1.1: Introduced saref:StateValue.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Describes the value for a state. The state value is optionally linked the states or states of interest it is a value of (OP saref:isValueOfState).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b206">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b207"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b65">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Task"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b15">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b16"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasFunction">
+    <rdfs:label xml:lang="en">has function</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b162"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Function"/>
+    <rdfs:comment xml:lang="en">Links a feature kind or a device to one of its functions.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isFunctionOf"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b175"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b168"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b170"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Domain of saref:hasFunction is relaxed.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b88">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b89"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b260">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b261"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isFunctionOfInterestOf">
+    <rdfs:label xml:lang="en">is function of interest of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasFunctionOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:comment xml:lang="en">Links a function of interest to the device it is a function of.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/CommandExecution">
+    <rdfs:label xml:lang="en">Command Execution</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b230"/>
+    <rdfs:comment xml:lang="en">Describes the execution of a command. Typically, its inputs and outputs are human understandable and relate to some feature of interest, such as its state (e.g., s4abcd:On), or the value of its temperature (e.g., property value 21.0 °C).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b59">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b60"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/source">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasPhenomenonTime">
+    <rdfs:label xml:lang="en">has phenomenon time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasPhenomenonTime as part of general will to make SAREF and SOSA/SSN converge.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a procedure execution to the time that the result applies. It may be an interval or an instant, or some other compound temporal entity expressed using OWL Time.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b250">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b251"/>
+    <rdf:first rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b237">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b238"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/isExecutionOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasProfile">
+    <rdfs:label xml:lang="en">has profile</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b243"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Profile"/>
+    <rdfs:comment xml:lang="en">Links a device to its profile. Its inverse is saref:isProfileOf. The device should be linked to a certain commodity using OP saref:consumes, saref:produces, or saref:stores, and optionally to some property or state using OP saref:targets or its sub-properties.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isProfileOf"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Relaxed domain of saref:hasProfile to saref:FeatureKind or saref:Device</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b27">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b28"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasValue">
+    <rdfs:label xml:lang="en">has value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Value of a property value expressed as an RDF literal. Note that, even if decimal values are expected, values could use other datatypes.</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Clarified definition of saref:hasValue.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/controls">
+    <rdfs:label xml:lang="en">controls</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b41"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isControlledBy"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced property saref:controls, as sub-property of saref:targets. and generalization of saref:controlsProperty.</skos:historyNote>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/targets"/>
+    <rdfs:comment xml:lang="en">Links a device, function, command, or procedure execution, to the feature, property, or state, it controls.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasVersion">
+    <rdfs:label xml:lang="en">has version</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:seeAlso rdf:resource="https://labs.etsi.org/rep/saref/saref-core/-/issues/53"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Links some entity (e.g., a device) to its version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b113">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b114"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasPropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalPosition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/Observation">
+    <rdfs:label xml:lang="en">Observation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b239"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b240"/>
+    <rdfs:comment xml:lang="en">A saref:Observation is the act of carrying out a procedure to estimate or calculate a value of a property of a feature of interest, or a state of a feature of interest. It links to a sensor to describe what made the observation, and to the observed feature, property, property of interest, state, or state of interest. Typically, its result is a property value or a state. An observation of a state (OP saref:observes) should have a state as a result (OP saref:hasResult). Respectively, an observation of a property should have a property value as a result.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isOfferedBy">
+    <rdfs:label xml:lang="en">is offered by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Service"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/offers"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:comment xml:lang="en">Links a service to the device that exposes it to a network</rdfs:comment>
+    <skos:historyNote xml:lang="en">V3.2.1: Clarified definition of saref:isOfferedBy.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isCommandOf">
+    <rdfs:label xml:lang="en">is command of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Command"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b182"/>
+    <rdfs:comment xml:lang="en">Links a command and a function or function of interest that supports it.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasCommand"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasApplicableTime">
+    <rdfs:label xml:lang="en">has applicable time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b249"/>
+    <rdfs:comment xml:lang="en">Links an entity (e.g., a profile) to an instant or interval or other compound temporal entity expressed using OWL Time, which bounds temporally the applicable context of that entity.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b191">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b192"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b266">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b267"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b134">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b135"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b51">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/observes"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#historyNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b284">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b285"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b71">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b72"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasStateValue">
+    <rdfs:label xml:lang="en">has state value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b148"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/StateValue"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b152"/>
+    <skos:historyNote xml:lang="en">V4.1.1: Introduced saref:hasStateValue.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a feature kind, a feature of interest, or a state of interest, to a state value.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b218">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b219"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b254">
+    <owl:allValuesFrom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b255"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b78">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b79"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/">
+    <vann:preferredNamespaceUri>https://saref.etsi.org/core/</vann:preferredNamespaceUri>
+    <dcterms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-10-31</dcterms:issued>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dcterms:description xml:lang="en">The Smart Applications REFerence ontology (SAREF) is intended to enable interoperability between solutions from different providers and among various activity sectors in the Internet of Things (IoT), thus contributing to the development of the global digital market.</dcterms:description>
+    <dcterms:source rdf:resource="https://saref.etsi.org/sources/saref-core/"/>
+    <rdfs:seeAlso rdf:resource="https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/04.01.01_60/ts_103264v040101p.pdf"/>
+    <vann:preferredNamespacePrefix>saref</vann:preferredNamespacePrefix>
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-03-06</dcterms:modified>
+    <owl:versionIRI rdf:resource="https://saref.etsi.org/core/v4.1.1/"/>
+    <dcterms:publisher rdf:resource="https://www.etsi.org/"/>
+    <owl:versionInfo>v4.1.1</owl:versionInfo>
+    <dcterms:license rdf:resource="https://forge.etsi.org/etsi-software-license"/>
+    <dcterms:creator rdf:resource="https://w3id.org/people/mpoveda/"/>
+    <dcterms:creator rdf:resource="https://www.linkedin.com/in/lauradaniele"/>
+    <dcterms:creator rdf:resource="http://maxime-lefrancois.info/me#"/>
+    <dcterms:creator rdf:resource="http://www.garcia-castro.com/foaf.rdf#me"/>
+    <dcterms:creator rdf:resource="https://www.linkedin.com/in/giulia-biagioni"/>
+    <dcterms:creator rdf:resource="https://www.linkedin.com/in/david-gnabasik-0056a0ba/"/>
+    <dcterms:creator rdf:resource="https://www.linkedin.com/in/bouterca"/>
+    <dcterms:title xml:lang="en">SAREF: the Smart Applications REFerence ontology</dcterms:title>
+    <rdfs:comment>Information about changes to version 3.1.1:
+
+NOTE:	In some cases, references have been added to indicate the issue in the ETSI Forge (https://saref.etsi.org/sources/saref-core/issues) where the change was discussed and implemented.
+
+- Added the saref:FeatureOfInterest class and the properties used to relate it to saref:Measurement (saref:hasMeasurement and saref:isMeasurementOf) and to saref:Property (saref:hasProperty and saref:isPropertyOf).
+- Added the saref:measurementMadeBy property as inverse of saref:makesMeasurement.
+- The saref:relatesToProperty and saref:relatesToMeasurement properties are now inverse of each other.
+- The range of saref:hasValue, which was defined as xsd:float, has been removed to support other datatypes for measurements.
+- The range of datatype properties, which was defined as xsd:string, has been removed in order to support strings with language tags (rdf:langString). This affects saref:hasDescription, saref:hasManufacturer, saref:hasModel and saref:hasName, which now have implicitly a range of rdfs:Literal.
+- The saref:hasName property has been removed and the use of rdfs:label is recommended. 
+- The saref:hasDescription property has been deprecated and the use of rdfs:comment is recommended. 
+- Too restrictive restrictions have been removed and in some cases the ontology documentation has been updated to reflect this: a saref:Command having at most one saref:hasDescription; a saref:Task being accomplished by at least one saref:Device; a saref:Device having a typical consumption of only energy or power; a saref:Commodity being measured in units of measure; restrictions on the values of saref:accomplishes that only covered specific use cases; universal restrictions on the saref:actsUpon property have been changed to existential ones; restrictions on the commands that a saref:Function may have, since there could be others not included in the defined enumerations; restrictive documentation of saref:EventFunction and saref:SmokeSensor.
+- Bugs have been fixed: some devices (saref:DoorSwitch, saref:EnergyMeter, saref:LigthSwitch, saref:SmokeSensor, and saref:TemperatureSensor) were defined as subclass of a device and at the same time as consisting of such device; a saref:LightSwitch controls light and does not measure light, since it is an actuator; incorrect documentation of saref:OnState and saref:OffState.
+- The saref:BuildingRelated, saref:EnergyRelated and saref:FunctionRelated classes have been removed, since the different extensions already classify the device types.
+- The instances of the subclasses of saref:Command have been removed, since they represent examples.
+- The instances of saref:UnitOfMeasure have been moved to examples.
+- The classes related to the SAREF4ENER extension have been removed: saref:Generator, saref:Storage, saref:Load and saref:EnergyMeter.
+- Some instances of saref:Device have been moved to examples: saref:WashingMachine, saref:LightingDevice, saref:MicroRenewable, saref:Multimedia, and saref:Network.
+- Added domain and range axioms wherever the definition of a property unambiguously identifies the domain or the range of the property.
+- The OWL Time ontology is not imported anymore.
+- The documentation of some ontology terms has been updated for clarification.
+- Language tags have been added to all labels and comments.
+</rdfs:comment>
+    <rdfs:comment>Information about changes to version 2.1.1:
+
+- The classes and properties related to how to represent devices in building spaces (such as the saref:BuildingSpace class,  saref:BuildingObject class and saref:isLocatedIn property) have been removed from SAREF and incorporated  into the SAREF4BLDG extension related to buildings, including the reuse of the W3C? WGS84 geo positioning vocabulary.
+- The saref:DeviceCategory and saref:FunctionCategory classes have been removed. Instead, the hierarchy of device categories has been implemented directly as subclasses of the saref:Device class.
+- The information specific for energy efficiency has been moved to the SAREF4ENER extension. For example, the saref:Profile class has been redefined to accommodate only the properties that are general enough for any type of profile, not only for energy and power. Details on how to specifically model a power profile can be found in the SAREF4ENER extension. 
+- The subclasses of the saref:Energy class  have been removed (i.e., Average Energy, Maximum Energy, Minimum Energy, Total Energy, HVAC Energy, Hot Water Energy and Lighting Energy).
+- The saref:Property class has been split into two classes (saref:Property and saref:Measurement), as it is done in the SAREF4ENVI extension, in order to properly accommodate the distinction between the concept of property (an observable quality of something) and the concept of measurement (a concrete value observed for a property).
+- Too restrictive cardinality restrictions have been revised, sometimes making them optional rather than mandatory (better to make properties mandatory in the extensions that specialize SAREF for a specific purpose, rather than restricting SAREF, whose purpose is more general). For example, definitions of units of measurement using an enumeration (owl:oneOf) were too restrictive because they did not allow using other units than those enumerated. Therefore, the individuals of each class are still there, but the owl:oneOf enumeration has been removed.
+- The saref:UnitOfMeasure subclasses use individuals from the OM ontology for unit of measures, but this is not the only solution. It has been clarified in the comments that the OM ontology is an example, but other ontologies can be used.
+- The global restrictions (rdfs:domain and rdfs:range) in object properties have been completely removed not to hinder interoperability. Object properties are now only restricted locally in the classes. 
+- The subclasses of saref:Task have been transormed in individuals.
+- The saref:hasTask property has been removed from the saref:Profile class to resolve an ambiguity with the saref:Task class.</rdfs:comment>
+    <rdfs:comment>Information about changes to version 4.1.1:
+
+NOTE: Rationale and decisions for many of the changes in V4.1.1 are available in issues in project https://labs.etsi.org/rep/saref/saref-core/-/milestones/3#tab-issues
+
+- Deprecated classes and properties have been deleted
+- Reworded definition of saref:Sensor and saref:Meter
+- saref:hasValue is now optional on saref:PropertyValue
+- improved parallel between Property and State descriptions
+- introduced saref:StateValue
+- Removed examples of commodity categories
+- Added notes and examples in multiple sections
+- Added clause 5.14 about composite properties
+- Reworked figures throughout the document
+- Added migration guide from V3.1.1 to V4.1.1
+- Updated the oneM2M base ontology to SAREF mapping
+- Added principle on generic versus specific entities distinction
+- Added references to EN 303 760
+</rdfs:comment>
+    <rdfs:comment>Information about changes to version 3.2.1:
+
+NOTE: Rationale and decisions for many of the changes in V3.2.1 are available in issues in project https://saref.etsi.org/sources/saref-core/issues.
+
+- Definition of saref:FeatureOfInterest is clarified, not only properties are measured, but properties and states can be observed and controlled.
+- Definition of saref:FeatureOfInterest: Clarify it is a specific real world entity.
+- Definition of saref:FeatureOfInterest: allValuesFrom axioms are unnecessary and have been deleted.
+- Introduced class saref:FeatureKind
+- Use SKOS to organize generic classes in taxonomies.
+- Introduce hasClassKind for Class is Feature, Device, Property, State, Function, Command.
+- Add local restrictions on consistsOf on feature of interest
+- Defined domain of saref:hasManufacturer to union of feature kind and feature of interest.
+- Defined domain of saref:hasModel to union of feature kind and feature of interest.
+- Most axioms on saref:Device were useless and have been deleted.
+- definition of saref:Device clarifies it is a real world entity.
+- saref:Device is explicitly a subclass of saref:FeatureOfInterest and s4syst:System.
+- saref:actsUpon now holds not only between a command and a state. It generalizes actsUpon, observes, controls. Domain and range are unions of several classes.
+- Introduced property saref:isActedUponBy.
+- Introduced property saref:observes, as sub-property of saref:actsUpon. and generalization of measures.
+- Introduced property saref:controls, as sub-property of saref:actsUpon. and generalization of saref:controlsProperty.
+- Introduced property saref:isControlledBy.
+- saref:measuresProperty is deprecated: will be deleted in the next release of SAREF
+- saref:isMeasuredByDevice is deprecated: will be deleted in the next release of SAREF
+- saref:isControlledByDevice is deprecated: will be deleted in the next release of SAREF
+- saref:controlsProperty is deprecated: will be deleted in the next release of SAREF
+- Definition of saref:Appliance is grounded on tasks and commodities.
+- Definition of Sensor is simplified and grounded on saref:observes. Local restriction on saref:hasFunction is deleted.
+- Definition of Actuator is simplified and grounded on saref:controls. Local restriction on saref:hasFunction is deleted.
+- Definition of Meter is simplified and grounded on saref:observes. Local restriction on saref:hasFunction is deleted.
+- Deprecated saref:HVAC for it is only an example.
+- Deprecated saref:Switch for it is only an example.
+- Deprecated saref:DoorSwitch for it is only an example.
+- Deprecated saref:LightSwitch for it is only an example.
+- Deprecated saref:SmokeSensor for it is only an example.
+- Deprecated saref:TemperatureSensor for it is only an example.
+- The following tasks are deprecated, and may be deleted in the next release of SAREF: saref:Cleaning, saref:Comfort, saref:Drying, saref:EnergyEfficiency, saref:Entertainment, saref:Lighting, saref:MeterReading, saref:Safety, saref:Washing, saref:WellBeing.
+- Definition of saref:Commodity is simplified.
+- saref:Electricity is deprecated: will be defined as an instance of saref:Commodity in the next release of SAREF
+- saref:Gas is deprecated: will be defined as an instance of saref:Commodity in the next release of SAREF
+- saref:Coal is deprecated: will be defined as an instance of saref:Commodity in the next release of SAREF
+- saref:Water is deprecated: will be defined as an instance of saref:Commodity in the next release of SAREF
+- New category of commodities saref:EnergyCommodity
+- New category of commodities saref:NaturalResourceCommodity
+- Introduced saref:consumes, saref:isConsumedBy, saref:produces, saref:isProducedBy, saref:stores, saref:isStoredBy.
+- The definition and scope of usage for saref:Property is clarified. Axiomatization is simplified.
+- applicability of saref:hasProperty is relaxed to also saref:FeatureKind
+- Introduced saref:PropertyOfInterest to solved the ambiguity between generic vs specific properties.
+- Introduced saref:hasPropertyOfInterest and saref:isPropertyOfInterestOf. Cannot use saref:hasProperty due to the combination of cardinality restrictions and sub-property chain axioms makes the ontology exist the OWL 2 DL prodile.
+- Introduced saref:PropertyValue to simplify the association of a measure to a property, without always needing it to be a measurement made by a device.
+- Clarified definition of saref:hasValue.
+- Relaxed domain of saref:isMeasuredIn so it can apply to saref:PropertyValue as well as saref:Measurement. The new range will be enforced in the next release of SAREF.
+- Introduced saref:hasPropertyValue.
+- Introduced saref:isValueOfProperty.
+- The following classes are deprecated and may be defined as instances of saref:Property in the next release of SAREF: saref:Energy, saref:Humidity, saref:Light, saref:Motion, saref:Occupancy, saref:Power, saref:Pressure, saref:Price, saref:Smoke, saref:Temperature
+- saref:EnergyUnit is deprecated. Will be deleted in the next release of SAREF
+- saref:IlluminanceUnit is deprecated. Will be deleted in the next release of SAREF
+- saref:PowerUnit is deprecated. Will be deleted in the next release of SAREF
+- saref:PressureUnit is deprecated. Will be deleted in the next release of SAREF
+- saref:TemperatureUnit is deprecated. Will be deleted in the next release of SAREF
+- Clarified and generalized definition of saref:State. Can now apply to all features of interest, not just devices.
+- Relaxed domain of saref:hasState.
+- Introduced saref:isStateOf.
+- Introduced saref:StateOfInterest, parallel to saref:PropertyOfInterest.
+- Introduced saref:hasStateOfInterest and saref:isStateOfInterestOf, parallel to saref:hasPropertyOfInterest and saref:isPropertyOfInterestOf.
+- The following classes are deprecated and may be defined as instances of saref:State in the next release of SAREF: saref:CloseState, saref:MultiLevelState, saref:OffState, saref:OnOffState, saref:OnState, saref:OpenCloseState, saref:OpenState, saref:StartState, saref:StartStopState, saref:StopState.
+- Simplified definition and axiomatization of saref:Function. Added examples.
+- saref:SensingFunction is deprecated: may be defined as an instance of saref:Function in the next release of SAREF
+- saref:hasSensingRange is deprecated together with saref:SensingFunction. And may be defined as an instance of saref:Property in the next release of SAREF
+- saref:hasSensorType is deprecated together with saref:SensingFunction. Use saref:hasDeviceKind instead.
+- saref:EventFunction is deprecated: may be defined as an instance of saref:Function in the next release of SAREF
+- saref:hasThresholdMeasurement is deprecated together with saref:EventFunction. And may be defined as an instance of saref:Property in the next release of SAREF
+- saref:MeteringFunction is deprecated: may be defined as an instance of saref:Function in the next release of SAREF
+- deprecated saref:hasMeterReading together with saref:Measurement and saref:MeteringFunction
+- deprecated saref:hasMeterReadingType together with saref:MeteringFunction
+- saref:LevelControlFunction, saref:StartStopFunction, saref:OpenCloseFunction, saref:OnOffFunction,  
+- saref:ActuatingFunction are deprecated: may be defined as an instance of saref:Function in the next release of SAREF.
+- Domain of saref:hasFunction is relaxed.
+- Introduced saref:isFunctionOf.
+- Introduced saref:FunctionOfInterest, parallel to saref:PropertyOfInterest.
+- Simplified definition and axiomatization of saref:Command. Added examples.
+- Domain of saref:hasCommand is relaxed to saref:Function or saref:FunctionOfInterest.
+- Introduced mandatory and optional commands.
+- Introduced saref:hasInput and saref:hasOutput.
+- Introduced saref:CommandOfInterest, parallel to saref:PropertyOfInterest.
+- The following classes are deprecated and may be defined as instances of saref:Command in the next release of SAREF: saref:ToggleCommand, saref:GetCommand, saref:NotifyCommand, saref:GetSensingDataCommand, saref:GetCurrentMeterValueCommand, saref:GetMeterDataCommand, saref:GetMeterHistoryCommand, saref:SetAbsoluteLevelCommand, saref:SetRelativeLevelCommand, saref:SetLevelCommand, saref:StepDownCommand, saref:StepUpCommand, saref:PauseCommand, saref:StartCommand, saref:StopCommand, saref:CloseCommand, saref:OpenCommand, saref:OnCommand, saref:OffCommand.
+- Simplified definition of saref:Service. Added examples.
+- Relaxed domain and range of saref:represents.
+- Clarified definition of saref:offers.
+- Clarified definition of saref:isOfferedBy.
+- saref:SwitchOnService is deprecated for it is just an example. It may be deleted in the next release of SAREF
+- Introduced saref:Operation and associated properties from oneM2M base ontology.
+- Introduced saref:ProcedureExecution.
+- Introduce saref:madeBy (resp. saref:madeExecution) as generalization of saref:measurementMadeBy (resp. saref:makesMeasurement).
+- saref:makesMeasurement is deprecated as one of the properties related to saref:Measurement. It may be deleted in the next release of SAREF
+- saref:makesMeasurement is deprecated as one of the properties related to saref:Measurement. It may be deleted in the next release of SAREF
+- Introduced saref:hasResult as part of general will to make SAREF and SOSA/SSN converge.
+- Introduced saref:hasResultTime as part of general will to make SAREF and SOSA/SSN converge.
+- Introduced saref:hasPhenomenonTime as part of general will to make SAREF and SOSA/SSN converge.
+- Tried to clarify definition of saref:hasTimestamp. Still unclear.
+- Deprecated saref:Measurement in favour of saref:Observation, to generalize to observation of states and convergence with SOSA/SSN.
+- Deprecated saref:isMeasurementOf together with saref:Measurement.
+- Deprecated saref:isMeasurementOf together with saref:Measurement.
+- Deprecated saref:isMeasurementOf together with saref:Measurement.
+- Deprecated saref:isMeasurementOf together with saref:Measurement.
+- Class saref:Profile has been re-specified, to take into account findings from SAREF4ENER V1.2.1.
+- Relaxed domain of saref:hasProfile to saref:FeatureKind or saref:Device
+- Deprecated saref:hasTime and use OWL Time instead whenever possible.
+- Deprecated saref:Time and use OWL Time instead whenever possible.
+- Deprecated saref:hasTypicalConsumption. May be defined as an instance of saref:Property in the next release of SAREF.
+</rdfs:comment>
+    <owl:priorVersion rdf:resource="https://saref.etsi.org/core/v3.2.1/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b251">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2006/time#TemporalPosition"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b261">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b262"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b26">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b27"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b101">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b102"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b124">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b125"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b243">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b244"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/whenPropertyValue">
+    <rdfs:label xml:lang="en">when property value</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Profile"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/PropertyValue"/>
+    <rdfs:comment xml:lang="en">Links a profile to a property value that contributes to restricting its applicable context.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b175">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b176"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b230">
+    <owl:allValuesFrom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b231"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isExecutionOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b93">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b94"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b44">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b45"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b60">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b240">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/observes"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b121">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b122"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b41">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b42"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b156">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b157"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b38">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b39"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b42">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b43"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isControlledBy">
+    <rdfs:label xml:lang="en">is controlled by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/controls"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced property saref:isControlledBy.</skos:historyNote>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/isTargetOf"/>
+    <rdfs:comment xml:lang="en">Links a feature, property, or state, to the device, function, command, or procedure execution, that controls it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b196">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b197"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b270">
+    <owl:allValuesFrom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b271"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isOperationOf">
+    <rdfs:label xml:lang="en">is operation of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Operation"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/hasOperation"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Service"/>
+    <rdfs:comment xml:lang="en">Links an operation to the service it belongs to.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b35">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b36"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Sensor"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b135">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b107">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b185">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b186"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b22">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b23"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b40">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Observation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b16">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b17"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasDeviceKind">
+    <rdfs:label xml:lang="en">has device kind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+    <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/hasFeatureKind"/>
+    <rdfs:comment xml:lang="en">Links a device to its kind, a device kind. Kinds of devices describe models of devices, with common properties and common states having the same value, targeting the same properties and states, common functions, and common services.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b176">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFunctionKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b86">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b87"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b81">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b82"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b195">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b196"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b54">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b55"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b55">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/StateOfInterest">
+    <rdfs:label xml:lang="en">State of Interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b143"/>
+    <skos:note xml:lang="en">States of interest need not always be explicited. It depends on the use case. Typically, states of interest are useful in applications, where the association between a feature of interest and a state (i.e., the state of interest) needs to be identified and related to other states of interest.</skos:note>
+    <skos:note xml:lang="en">Per convention, the IRI of states of interest should consist of the IRI of their feature of interest, suffixed with a fragment identifier #{S} where {S} refers to the name of the state.</skos:note>
+    <skos:note xml:lang="en">A state of interest is the state of (OP saref:isStateOfInterestOf) exactly one feature of interest.</skos:note>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:StateOfInterest, parallel to saref:PropertyOfInterest.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Identifiable conditions that features of interest are or may be in, and that can be target of devices, such as observed and controlled. An instance of saref:StateOfInterest is specific to a feature of interest. It is inherent to and cannot exist without that feature of interest.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b97">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b199">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b200"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasCommandKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b161">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Function"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b166">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b167"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b139">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b140"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b117">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b118"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b258">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/ProcedureExecution">
+    <rdfs:label xml:lang="en">Procedure Execution</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:ProcedureExecution.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Represents the act of carrying out a procedure.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b110">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isPropertyOfInterestOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasResultTime">
+    <rdfs:label xml:lang="en">has result time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasResultTime as part of general will to make SAREF and SOSA/SSN converge.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a procedure execution to the instant of time when the activity was completed, expressed as an xsd:dateTime literal.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasPropertyOfInterest">
+    <rdfs:label xml:lang="en">has property of interest</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isPropertyOfInterestOf"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasPropertyOfInterest and saref:isPropertyOfInterestOf. Cannot use saref:hasProperty due to the combination of cardinality restrictions and sub-property chain axioms makes the ontology exist the OWL 2 DL prodile.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a feature of interest to one of its properties of interest.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b84">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b85"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b137">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b138"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b39">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b40"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b37">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b38"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/offers">
+    <rdfs:label xml:lang="en">offers</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Device"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Service"/>
+    <rdfs:comment xml:lang="en">Links a device to a service it exposes to a network.</rdfs:comment>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/isOfferedBy"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Clarified definition of saref:offers.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#broader">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b153">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasStateValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b142">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/isStoredBy">
+    <rdfs:label xml:lang="en">is stored by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://saref.etsi.org/core/stores"/>
+    <rdfs:comment xml:lang="en">Links a commodity to the feature kind, feature of interest, or device, that stores it</rdfs:comment>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/Commodity"/>
+    <rdfs:range rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b93"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/creator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b74">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b75"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b174">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasCommandKind">
+    <rdfs:label xml:lang="en">has command kind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Command"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b199"/>
+    <rdfs:comment xml:lang="en">links a command of interest to its kind, a command.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b10">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b225">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Profile"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b193">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b194">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b195"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b127">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b215">
+    <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minQualifiedCardinality>
+    <owl:onClass rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/represents"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b94">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b95"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b157">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b172">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isFunctionOfInterestOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b234">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Operation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isExecutionOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b36">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b37"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b274">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b275"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/State"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b271">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b272"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b146">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b147"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasStateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b52">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/OperationExecution">
+    <rdfs:label xml:lang="en">Operation Execution</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <rdfs:subClassOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b234"/>
+    <rdfs:comment xml:lang="en">Describes the execution of an operation in a network: the–machine interpretable–  description of a communication between devices over the network. Typically, its input and result are network messages, that conform to the input and output of the executed operation.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b164">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b192">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b193"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Operation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b129">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasPropertyKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/title">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b46">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b47"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b89">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b90"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasRevisionNumber">
+    <rdfs:label xml:lang="en">has revision number</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:seeAlso rdf:resource="https://labs.etsi.org/rep/saref/saref-core/-/issues/53"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Links some entity (e.g., a device) to its revision number.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b28">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b29"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b90">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b91"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b67">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Commodity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b49">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/observes"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b158">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b159"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/isValueOfState"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b30">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b31"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b257">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b258"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b72">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b104">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b105"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b100">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b101"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b79">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b80"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b57">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b128">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b129"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/isValueOfProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b198">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isCommandOfInterestOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b197">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Operation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b277">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b278"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b138">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b226">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b227"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b222">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:cardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isOperationOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b147">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasStateKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b96">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b97"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b202">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasCommandKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b45">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b46"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b112">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b114">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasPropertyKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b177">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Command"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b109">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b262">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b263"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b73">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b74"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b190">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b191"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b239">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Sensor"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/madeBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b29">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b30"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasModel">
+    <rdfs:label xml:lang="en">has model</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">A relationship identifying the model of an entity (e.g., device). The value is expected to be a string or a string with language tag.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b61"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Defined domain of saref:hasModel to union of feature kind and feature of interest.</skos:historyNote>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b108">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b109"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b160">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Function"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b212">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b213"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b278">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b279"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/PropertyValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b209">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b210"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/modified">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b99">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/Property"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b125">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b126"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasPropertyKind">
+    <rdfs:label xml:lang="en">has property kind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/PropertyOfInterest"/>
+    <rdfs:range rdf:resource="https://saref.etsi.org/core/Property"/>
+    <owl:propertyChainAxiom rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b111"/>
+    <rdfs:comment xml:lang="en">links a property of interest to its kind, a property.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b82">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b167">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b242">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/controls"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b62">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b63"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b281">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/isValueOfProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://saref.etsi.org/core/hasResult">
+    <rdfs:label xml:lang="en">has result</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+    <skos:historyNote xml:lang="en">V3.2.1: Introduced saref:hasResult as part of general will to make SAREF and SOSA/SSN converge.</skos:historyNote>
+    <rdfs:comment xml:lang="en">Links a procedure execution (e.g., an observation) to its result (e.g., a property value).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b9">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b10"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b188">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasMandatoryCommand"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b106">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b107"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b12">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b13"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b279">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b32">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/ProcedureExecution"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b141">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b142"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b155">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b156"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b111">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b112"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasPropertyKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b183">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b184"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b116">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/isMeasuredIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b105">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b204">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b205"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Service"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b219">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b220"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b276">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b277"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#narrower">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b87">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b267">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasPropertyKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b34">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b35"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b130">
+    <owl:allValuesFrom rdf:resource="https://saref.etsi.org/core/State"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b5">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b6"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b283">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/isValueOfState"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b154">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b155"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b263">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b264"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/State"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b186">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasMandatoryCommand"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b282">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b283"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b182">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b183"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b48">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Actuation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b77">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b231">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b232"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b269">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasStateKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b80">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b81"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b7">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b8"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b256">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b257"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b246">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b247"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b253">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b69">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b70"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b152">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b153"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b23">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b24"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/State"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b163">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b164"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b118">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b119"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b285">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b19">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b20"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b92">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b181">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b235">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b236"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/isExecutionOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b187">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b188"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasFeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b170">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b171"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/hasDeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b229">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Operation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b33">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b34"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b233">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#example">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b4">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b5"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/DeviceKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b168">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b169"/>
+    <rdf:first rdf:resource="http://www.w3.org/2004/02/skos/core#broader"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b123">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b124"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b17">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b148">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b149"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b220">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/CommandOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b227">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b228"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Command"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b223">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b224"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b24">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/StateOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b6">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b7"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Function"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b14">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b15"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b21">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b22"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b68">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b69"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b165">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b166"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b249">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b250"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b133">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b134"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b83">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b84"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b268">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b269"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b119">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b120"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b50">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://saref.etsi.org/core/controls"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b273">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b274"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b70">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b71"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b208">
+    <rdf:rest rdf:nodeID="n87d8b773e6924a1db9c218b7902e74d7b209"/>
+    <rdf:first rdf:resource="https://saref.etsi.org/core/FunctionOfInterest"/>
+  </rdf:Description>
+</rdf:RDF>

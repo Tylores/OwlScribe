@@ -24,11 +24,16 @@ async fn main() -> Result<()> {
             continue;
         }
 
-        if let Ok(request) = serde_json::from_str::<JsonRpcRequest>(trimmed) {
-            if let Some(response) = handle_request(request) {
-                let response_json = serde_json::to_string(&response)?;
-                writeln!(writer, "{}", response_json)?;
-                writer.flush()?;
+        match serde_json::from_str::<JsonRpcRequest>(trimmed) {
+            Ok(request) => {
+                if let Some(response) = handle_request(request) {
+                    let response_json = serde_json::to_string(&response)?;
+                    writeln!(writer, "{}", response_json)?;
+                    writer.flush()?;
+                }
+            }
+            Err(e) => {
+                eprintln!("[owlscribe] Failed to parse request JSON: {}; raw line: {}", e, trimmed);
             }
         }
 
@@ -39,7 +44,7 @@ async fn main() -> Result<()> {
 }
 
 fn handle_request(req: JsonRpcRequest) -> Option<JsonRpcResponse> {
-    let id = req.id.unwrap_or(serde_json::Value::Null);
+    let id = req.id.clone().unwrap_or(serde_json::Value::Null);
 
     match req.method.as_str() {
         "initialize" => Some(JsonRpcResponse::success(
@@ -55,7 +60,8 @@ fn handle_request(req: JsonRpcRequest) -> Option<JsonRpcResponse> {
                 }
             }),
         )),
-        "notifications/initialized" => None,
+        "notifications/initialized" | "initialized" => None,
+        "ping" => Some(JsonRpcResponse::success(id, json!({}))),
         "tools/list" => {
             let tools = tools::list_tools();
             let tool_list = McpToolListResponse { tools };
@@ -69,7 +75,13 @@ fn handle_request(req: JsonRpcRequest) -> Option<JsonRpcResponse> {
             let tool_result = tools::call_tool(tool_name, arguments);
             Some(JsonRpcResponse::success(id, serde_json::to_value(tool_result).unwrap_or(Value::Null)))
         }
-        _ => Some(JsonRpcResponse::error(id, -32601, format!("Method not found: {}", req.method))),
+        _ => {
+            if req.id.is_none() || req.method.starts_with("notifications/") || req.method.starts_with("$/") {
+                None
+            } else {
+                Some(JsonRpcResponse::error(id, -32601, format!("Method not found: {}", req.method)))
+            }
+        }
     }
 }
 use serde_json::Value;

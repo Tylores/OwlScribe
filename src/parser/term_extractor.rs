@@ -83,12 +83,20 @@ pub struct TermAlignmentMatrixEntry {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct InteractiveGuidance {
+    pub status: String,
+    pub message: String,
+    pub recommended_actions: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ParsePdfToTermsResult {
     pub step1_domain_scope: McGuinnessStep1DomainScope,
     pub step2_reuse_references: McGuinnessStep2ReuseReferences,
     pub step3_term_enumeration: McGuinnessStep3TermEnumeration,
     pub step5_6_mined_relationships: McGuinnessStep5_6MinedRelationships,
     pub term_alignment_matrix: Vec<TermAlignmentMatrixEntry>,
+    pub interactive_guidance: InteractiveGuidance,
     pub detected_sections: Vec<String>,
 }
 
@@ -199,6 +207,35 @@ impl TermExtractor {
 
         let suggested_base_ontologies = Self::suggest_base_ontologies(content, base_seed);
 
+        let lower_content = content.to_lowercase();
+        let is_grid_spec = lower_content.contains("1547") || lower_content.contains("der") || lower_content.contains("interconnection") || lower_content.contains("inverter") || lower_content.contains("grid");
+
+        let interactive_guidance = if let Some(seed) = base_seed {
+            InteractiveGuidance {
+                status: "seeded_extraction".to_string(),
+                message: format!("Candidate terms were automatically aligned against base ontology '{}'.", seed.ontology_iri),
+                recommended_actions: vec![
+                    "Review candidate_terms and term_alignment_matrix entries.".to_string(),
+                    "Proceed to generate_owl_ontology using harvested terms and class_mappings.".to_string(),
+                ],
+            }
+        } else {
+            let spec_note = if is_grid_spec {
+                " For IEEE 1547 / Smart Grid specs, SAREF4GRID (https://saref.etsi.org/saref4grid/) and SOSA are recommended base ontologies."
+            } else {
+                ""
+            };
+
+            InteractiveGuidance {
+                status: "unseeded_extraction".to_string(),
+                message: format!("No base ontology seed was provided. Terms were harvested without domain concept alignment.{}", spec_note),
+                recommended_actions: vec![
+                    "Step 2 Alignment: Re-run parse_pdf_to_terms supplying 'base_ontology_path' or 'base_ontology_seed' with a recommended domain ontology.".to_string(),
+                    "Direct Generation: Review candidate terms and pass classes directly with optional 'class_mappings' to generate_owl_ontology.".to_string(),
+                ],
+            }
+        };
+
         Ok(ParsePdfToTermsResult {
             step1_domain_scope: McGuinnessStep1DomainScope {
                 document_title: doc_title,
@@ -216,6 +253,7 @@ impl TermExtractor {
             },
             step5_6_mined_relationships: mined_relationships,
             term_alignment_matrix,
+            interactive_guidance,
             detected_sections: sections,
         })
     }
@@ -227,6 +265,9 @@ impl TermExtractor {
         }
 
         let lower = content.to_lowercase();
+        if (lower.contains("1547") || lower.contains("der") || lower.contains("interconnection") || lower.contains("inverter") || lower.contains("grid") || lower.contains("power")) && !suggestions.contains(&"https://saref.etsi.org/saref4grid/".to_string()) {
+            suggestions.push("https://saref.etsi.org/saref4grid/".to_string());
+        }
         if (lower.contains("sensor") || lower.contains("observation") || lower.contains("sensing")) && !suggestions.contains(&"http://www.w3.org/ns/sosa/".to_string()) {
             suggestions.push("http://www.w3.org/ns/sosa/".to_string());
         }
