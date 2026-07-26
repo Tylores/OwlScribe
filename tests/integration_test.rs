@@ -2,9 +2,7 @@ use owlscribe::ontology::mcguinness_builder::{ClassDefinition, McGuinnessOntolog
 use owlscribe::ontology::serializer::OntologyFormat;
 use owlscribe::parser::spec_profile::SpecType;
 use owlscribe::parser::term_extractor::TermExtractor;
-use owlscribe::tools::generate_owl::{GenerateOwlOntologyArgs, GenerateOwlOntologyResponse};
-use owlscribe::tools::generate_owl;
-
+use owlscribe::tools::generate_owl::{self, GenerateOwlOntologyArgs, GenerateOwlOntologyResponse};
 
 #[test]
 fn test_end_to_end_parse_and_generate_ontology() {
@@ -27,6 +25,7 @@ ISO/IEC 27001 Information technology — Security techniques.
         "ISO/IEC 27000",
         Some(SpecType::Iso),
         Some(0.5),
+        None,
     )
     .unwrap();
 
@@ -52,6 +51,11 @@ ISO/IEC 27001 Information technology — Security techniques.
         object_properties: vec![],
         data_properties: vec![],
         individuals: vec![],
+        imports: vec![],
+        base_ontology_path: None,
+        base_ontology_content: None,
+        class_mappings: vec![],
+        property_mappings: vec![],
     };
 
     // Step 3: Execute tool generate_owl_ontology
@@ -63,7 +67,6 @@ ISO/IEC 27001 Information technology — Security techniques.
     let tool_res = generate_owl::execute(gen_args);
     assert!(tool_res.is_error.is_none());
     assert!(!tool_res.content.is_empty());
-
 
     let response_text = &tool_res.content[0].text;
     let parsed_resp: GenerateOwlOntologyResponse = serde_json::from_str(response_text).unwrap();
