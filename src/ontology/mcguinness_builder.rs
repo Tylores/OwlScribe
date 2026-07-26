@@ -1,8 +1,12 @@
+use crate::ontology::base_ontology::BaseOntologyLoader;
 use anyhow::Result;
 use horned_owl::model::*;
 use horned_owl::ontology::set::SetOntology;
 use serde::{Deserialize, Serialize};
 
+fn default_mapping_type() -> String {
+    "equivalentClass".to_string()
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClassDefinition {
@@ -35,6 +39,22 @@ pub struct IndividualDefinition {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ClassMapping {
+    pub term: String,
+    pub target_iri: String,
+    #[serde(default = "default_mapping_type")]
+    pub mapping_type: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PropertyMapping {
+    pub property_name: String,
+    pub target_iri: String,
+    #[serde(default = "default_mapping_type")]
+    pub mapping_type: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct McGuinnessOntologyInput {
     pub ontology_iri: String,
     pub prefix: Option<String>,
@@ -45,6 +65,14 @@ pub struct McGuinnessOntologyInput {
     pub data_properties: Vec<DataPropertyDefinition>,
     #[serde(default)]
     pub individuals: Vec<IndividualDefinition>,
+    #[serde(default)]
+    pub imports: Vec<String>,
+    pub base_ontology_path: Option<String>,
+    pub base_ontology_content: Option<String>,
+    #[serde(default)]
+    pub class_mappings: Vec<ClassMapping>,
+    #[serde(default)]
+    pub property_mappings: Vec<PropertyMapping>,
 }
 
 #[derive(Debug)]
@@ -65,7 +93,6 @@ impl McGuinnessBuilder {
         let build = Build::new();
 
         let base_iri = if input.ontology_iri.ends_with('#') || input.ontology_iri.ends_with('/') {
-
             input.ontology_iri.clone()
         } else {
             format!("{}#", input.ontology_iri)
@@ -75,9 +102,29 @@ impl McGuinnessBuilder {
         let mut ontology: SetOntology<ArcStr> = SetOntology::new();
         ontology.insert(Component::OntologyID(OntologyID::new(Some(ont_iri), None)));
 
+        // Base Graph Loading & Merging
+        if let Some(ref path) = input.base_ontology_path {
+            let (base_ont, _seed) = BaseOntologyLoader::from_ofn_file(path)?;
+            for component in base_ont.iter() {
+                if !matches!(&component.component, Component::OntologyID(_)) {
+                    ontology.insert(component.clone());
+                }
+            }
+        } else if let Some(ref content) = input.base_ontology_content {
+            let (base_ont, _seed) = BaseOntologyLoader::from_ofn_str(content)?;
+            for component in base_ont.iter() {
+                if !matches!(&component.component, Component::OntologyID(_)) {
+                    ontology.insert(component.clone());
+                }
+            }
+        }
 
 
-
+        // OWL Imports
+        for import_iri in &input.imports {
+            let imp_iri = build.iri(import_iri.as_str());
+            ontology.insert(Import(imp_iri));
+        }
 
         let mut class_count = 0;
         let mut object_prop_count = 0;
@@ -92,13 +139,43 @@ impl McGuinnessBuilder {
             class_count += 1;
 
             if let Some(ref parent_name) = class_def.parent_class {
-                let parent_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(parent_name));
+                let parent_iri_str = if parent_name.starts_with("http://") || parent_name.starts_with("https://") {
+                    parent_name.clone()
+                } else {
+                    format!("{}{}", base_iri, Self::sanitize_identifier(parent_name))
+                };
                 let parent_class = build.class(build.iri(parent_iri_str.as_str()));
                 let sub_axiom = SubClassOf {
                     sub: ClassExpression::Class(class.clone()),
                     sup: ClassExpression::Class(parent_class),
                 };
                 ontology.insert(sub_axiom);
+            }
+        }
+
+        // Perform Formal Class Mappings
+        for mapping in &input.class_mappings {
+            let local_iri_str = if mapping.term.starts_with("http://") || mapping.term.starts_with("https://") {
+                mapping.term.clone()
+            } else {
+                format!("{}{}", base_iri, Self::sanitize_identifier(&mapping.term))
+            };
+            let target_iri_str = mapping.target_iri.clone();
+
+            let local_class = build.class(build.iri(local_iri_str.as_str()));
+            let target_class = build.class(build.iri(target_iri_str.as_str()));
+
+            if mapping.mapping_type == "subClassOf" {
+                ontology.insert(SubClassOf {
+                    sub: ClassExpression::Class(local_class),
+                    sup: ClassExpression::Class(target_class),
+                });
+            } else {
+                // Default to equivalentClass
+                ontology.insert(EquivalentClasses(vec![
+                    ClassExpression::Class(local_class),
+                    ClassExpression::Class(target_class),
+                ]));
             }
         }
 
@@ -241,6 +318,15 @@ mod tests {
                 class_name: "Specification".to_string(),
                 comment: None,
             }],
+            imports: vec!["http://www.w3.org/ns/sosa/".to_string()],
+            base_ontology_path: None,
+            base_ontology_content: None,
+            class_mappings: vec![ClassMapping {
+                term: "Specification".to_string(),
+                target_iri: "http://www.w3.org/ns/sosa/Observation".to_string(),
+                mapping_type: "equivalentClass".to_string(),
+            }],
+            property_mappings: vec![],
         };
 
         let result = McGuinnessBuilder::build(input).unwrap();
@@ -248,6 +334,6 @@ mod tests {
         assert_eq!(result.object_property_count, 1);
         assert_eq!(result.data_property_count, 1);
         assert_eq!(result.individual_count, 1);
-        assert!(result.axiom_count >= 5);
+        assert!(result.axiom_count >= 6);
     }
 }

@@ -1,3 +1,4 @@
+use crate::ontology::base_ontology::{BaseOntologySeed, SeedConceptMatcher};
 use crate::parser::spec_profile::{SpecProfile, SpecType};
 use anyhow::{Context, Result};
 use regex::Regex;
@@ -12,6 +13,10 @@ pub struct TermCandidate {
     pub section: String,
     pub rfc2119_keywords: Vec<String>,
     pub context_snippet: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mapped_base_concept: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mapping_relation: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -25,6 +30,7 @@ pub struct McGuinnessStep1DomainScope {
 pub struct McGuinnessStep2ReuseReferences {
     pub normative_references: Vec<String>,
     pub candidate_ontologies: Vec<String>,
+    pub suggested_base_ontologies: Vec<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -48,6 +54,7 @@ impl TermExtractor {
         pdf_path: &Path,
         spec_type_override: Option<SpecType>,
         min_confidence: Option<f64>,
+        base_seed: Option<&BaseOntologySeed>,
     ) -> Result<ParsePdfToTermsResult> {
         let pdf_bytes = std::fs::read(pdf_path)
             .with_context(|| format!("Failed to read PDF file at '{}'", pdf_path.display()))?;
@@ -60,7 +67,7 @@ impl TermExtractor {
             }
         };
 
-        Self::parse_raw_text(&raw_text, pdf_path.to_string_lossy().as_ref(), spec_type_override, min_confidence)
+        Self::parse_raw_text(&raw_text, pdf_path.to_string_lossy().as_ref(), spec_type_override, min_confidence, base_seed)
     }
 
     fn extract_with_lopdf(pdf_bytes: &[u8]) -> Result<String> {
@@ -80,6 +87,7 @@ impl TermExtractor {
         doc_name: &str,
         spec_type_override: Option<SpecType>,
         min_confidence: Option<f64>,
+        base_seed: Option<&BaseOntologySeed>,
     ) -> Result<ParsePdfToTermsResult> {
         let min_conf = min_confidence.unwrap_or(0.3);
 
@@ -93,7 +101,18 @@ impl TermExtractor {
         // Detect headings & sections
         let sections = Self::detect_sections(content);
         let normative_references = Self::extract_references(content, &profile);
-        let candidate_terms = Self::extract_terms(content, &profile, min_conf);
+        let mut candidate_terms = Self::extract_terms(content, &profile, min_conf);
+
+        // Perform Seed Concept Alignment if base_seed is provided
+        if let Some(seed) = base_seed {
+            for cand in &mut candidate_terms {
+                if let Some(m) = SeedConceptMatcher::match_term(&cand.term, &cand.definition, seed) {
+                    cand.mapped_base_concept = Some(m.target_iri);
+                    cand.mapping_relation = Some(m.suggested_mapping);
+                    cand.confidence = (cand.confidence + m.confidence_boost).min(1.0);
+                }
+            }
+        }
 
         let rfc_keywords = Self::extract_rfc2119_keywords(content);
 
@@ -112,6 +131,8 @@ impl TermExtractor {
             candidate_ontologies.push("http://www.w3.org/ns/odrl/2/".to_string());
         }
 
+        let suggested_base_ontologies = Self::suggest_base_ontologies(content, base_seed);
+
         Ok(ParsePdfToTermsResult {
             step1_domain_scope: McGuinnessStep1DomainScope {
                 document_title: doc_title,
@@ -121,6 +142,7 @@ impl TermExtractor {
             step2_reuse_references: McGuinnessStep2ReuseReferences {
                 normative_references,
                 candidate_ontologies,
+                suggested_base_ontologies,
             },
             step3_term_enumeration: McGuinnessStep3TermEnumeration {
                 total_terms_found: candidate_terms.len(),
@@ -128,6 +150,26 @@ impl TermExtractor {
             },
             detected_sections: sections,
         })
+    }
+
+    fn suggest_base_ontologies(content: &str, base_seed: Option<&BaseOntologySeed>) -> Vec<String> {
+        let mut suggestions = Vec::new();
+        if let Some(seed) = base_seed {
+            suggestions.push(seed.ontology_iri.clone());
+        }
+
+        let lower = content.to_lowercase();
+        if (lower.contains("sensor") || lower.contains("observation") || lower.contains("sensing")) && !suggestions.contains(&"http://www.w3.org/ns/sosa/".to_string()) {
+            suggestions.push("http://www.w3.org/ns/sosa/".to_string());
+        }
+        if (lower.contains("device") || lower.contains("appliance") || lower.contains("saref")) && !suggestions.contains(&"http://saref.etsi.org/core/".to_string()) {
+            suggestions.push("http://saref.etsi.org/core/".to_string());
+        }
+        if (lower.contains("unit") || lower.contains("quantity") || lower.contains("qudt")) && !suggestions.contains(&"http://qudt.org/2.1/schema/qudt".to_string()) {
+            suggestions.push("http://qudt.org/2.1/schema/qudt".to_string());
+        }
+
+        suggestions
     }
 
     fn extract_title(content: &str, fallback: &str) -> String {
@@ -161,7 +203,6 @@ impl TermExtractor {
     }
 
     fn extract_references(content: &str, _profile: &SpecProfile) -> Vec<String> {
-
         let mut refs = Vec::new();
         let re_std = Regex::new(r"(?i)\b(ISO|IEC|IEEE|NIST|RFC|W3C|ANSI)\s*(?:Std\s*)?[\d\.-]+").ok();
         if let Some(regex) = re_std {
@@ -229,6 +270,8 @@ impl TermExtractor {
                     section: "Terms and Definitions".to_string(),
                     rfc2119_keywords: rfc_kw,
                     context_snippet: snippet,
+                    mapped_base_concept: None,
+                    mapping_relation: None,
                 });
             }
         }
@@ -255,6 +298,8 @@ impl TermExtractor {
                                 section: "Definitions".to_string(),
                                 rfc2119_keywords: vec![],
                                 context_snippet: trimmed.to_string(),
+                                mapped_base_concept: None,
+                                mapping_relation: None,
                             });
                         }
                     }
@@ -295,7 +340,7 @@ ISO/IEC 27000 Information security.
 3.1 Ontology: A formal, explicit specification of a shared conceptualization.
 3.2 Axiom: A statement that is assumed to be true.
 "#;
-        let result = TermExtractor::parse_raw_text(text, "ISO 12345", Some(SpecType::Iso), None).unwrap();
+        let result = TermExtractor::parse_raw_text(text, "ISO 12345", Some(SpecType::Iso), None, None).unwrap();
         assert_eq!(result.step1_domain_scope.detected_spec_type, SpecType::Iso);
         assert!(!result.step3_term_enumeration.term_candidates.is_empty());
         let ontology_term = result.step3_term_enumeration.term_candidates.iter().find(|t| t.term == "Ontology");
@@ -311,7 +356,7 @@ RFC 2119
 An endpoint MUST validate the OWL ontology payload.
 An implementation SHOULD log warning messages.
 "#;
-        let result = TermExtractor::parse_raw_text(text, "RFC 2119", Some(SpecType::Rfc), None).unwrap();
+        let result = TermExtractor::parse_raw_text(text, "RFC 2119", Some(SpecType::Rfc), None, None).unwrap();
         assert_eq!(result.step1_domain_scope.detected_spec_type, SpecType::Rfc);
         let term = result.step3_term_enumeration.term_candidates.first();
         if let Some(t) = term {
@@ -319,4 +364,3 @@ An implementation SHOULD log warning messages.
         }
     }
 }
-

@@ -23,13 +23,11 @@ pub struct GenerateOwlOntologyResponse {
     pub serialized_ontology: String,
 }
 
-
 pub fn tool_definition() -> McpTool {
     McpTool {
         name: "generate_owl_ontology".to_string(),
-        description: "Executes the McGuinness 7-Step structuring logic (Steps 4-7: Classes/Hierarchy, Properties, Facets/Restrictions, Instances) and returns a validated, serialized OWL 2 ontology (Functional Syntax, Turtle, RDF/XML) generated via horned-owl.".to_string(),
+        description: "Executes McGuinness 7-Step structuring logic (Steps 4-7: Classes/Hierarchy, Properties, Facets/Restrictions, Instances) and performs full W3C OWL 2 graph binding (owl:imports, rdfs:subClassOf, owl:equivalentClass) against base domain ontologies using horned-owl.".to_string(),
         input_schema: json!({
-
             "type": "object",
             "properties": {
                 "ontology_iri": {
@@ -97,6 +95,36 @@ pub fn tool_definition() -> McpTool {
                             "comment": { "type": "string" }
                         },
                         "required": ["name", "class_name"]
+                    }
+                },
+                "imports": {
+                    "type": "array",
+                    "description": "List of base domain ontology IRIs to formally import via owl:imports.",
+                    "items": { "type": "string" }
+                },
+                "base_ontology_path": {
+                    "type": "string",
+                    "description": "Optional file path to a base ontology (.ofn format) to load and merge into the target graph."
+                },
+                "base_ontology_content": {
+                    "type": "string",
+                    "description": "Optional raw OFN content string of a base ontology to merge into the target graph."
+                },
+                "class_mappings": {
+                    "type": "array",
+                    "description": "Formal mappings connecting candidate PDF classes to base ontology classes (owl:equivalentClass or rdfs:subClassOf).",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "term": { "type": "string" },
+                            "target_iri": { "type": "string" },
+                            "mapping_type": {
+                                "type": "string",
+                                "enum": ["equivalentClass", "subClassOf"],
+                                "description": "Defaults to 'equivalentClass'."
+                            }
+                        },
+                        "required": ["term", "target_iri"]
                     }
                 }
             },
