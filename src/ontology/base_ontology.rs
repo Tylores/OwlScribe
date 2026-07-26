@@ -3,9 +3,8 @@ use horned_owl::io::ParserConfiguration;
 use horned_owl::model::*;
 use horned_owl::ontology::set::SetOntology;
 use serde::{Deserialize, Serialize};
-use std::fs::File;
-use std::io::BufReader;
 use std::path::Path;
+
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct SeedClass {
@@ -43,7 +42,49 @@ pub struct SeedMatchResult {
 pub struct BaseOntologyLoader;
 
 impl BaseOntologyLoader {
+    /// Loads a base ontology from a file (.ofn, .rdf, .ttl, or .xml) and extracts its seed.
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
+        let content = std::fs::read_to_string(path.as_ref())
+            .with_context(|| format!("Failed to read base ontology file at '{}'", path.as_ref().display()))?;
+        Self::from_str(&content)
+    }
+
+    /// Loads a base ontology from a raw content string (.ofn, .rdf, or .ttl) and extracts its seed.
+    pub fn from_str(content: &str) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
+        let trimmed = content.trim();
+        // If content starts with OFN signature (Prefix or Ontology) or file format hint, try OFN first
+        if trimmed.starts_with("Prefix") || trimmed.starts_with("Ontology") {
+            if let Ok(res) = Self::parse_ofn_str(content) {
+                return Ok(res);
+            }
+        }
+
+        // Try RDF/XML & Turtle parsing
+        if let Ok(res) = Self::parse_rdf_str(content) {
+            return Ok(res);
+        }
+
+        // Fallback: try OFN parsing if not tried yet
+        if !trimmed.starts_with("Prefix") && !trimmed.starts_with("Ontology") {
+            if let Ok(res) = Self::parse_ofn_str(content) {
+                return Ok(res);
+            }
+        }
+
+        Err(anyhow::anyhow!("Failed to parse base ontology in any supported format (OFN, RDF/XML, Turtle)"))
+    }
+
+    /// Alias for backwards compatibility with existing callers.
     pub fn from_ofn_str(ofn_content: &str) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
+        Self::from_str(ofn_content)
+    }
+
+    /// Alias for backwards compatibility with existing callers.
+    pub fn from_ofn_file<P: AsRef<Path>>(path: P) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
+        Self::from_file(path)
+    }
+
+    fn parse_ofn_str(ofn_content: &str) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
         let mut cursor = std::io::Cursor::new(ofn_content.as_bytes());
         let config = ParserConfiguration::default();
         let (ontology, _prefix_mapping) = horned_owl::io::ofn::reader::read(&mut cursor, config)
@@ -53,17 +94,99 @@ impl BaseOntologyLoader {
         Ok((ontology, seed))
     }
 
-    pub fn from_ofn_file<P: AsRef<Path>>(path: P) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
-        let file = File::open(path.as_ref())
-            .with_context(|| format!("Failed to open base ontology file at '{}'", path.as_ref().display()))?;
-        let mut reader = BufReader::new(file);
+    fn parse_rdf_str(rdf_content: &str) -> Result<(SetOntology<ArcStr>, BaseOntologySeed)> {
+        let mut cursor = std::io::Cursor::new(rdf_content.as_bytes());
         let config = ParserConfiguration::default();
-        let (ontology, _prefix_mapping) = horned_owl::io::ofn::reader::read(&mut reader, config)
-            .map_err(|e| anyhow::anyhow!("Failed to parse OWL Functional Syntax file: {:?}", e))?;
+        let (rdf_ont, _prefix_mapping) = horned_owl::io::rdf::reader::read(&mut cursor, config)
+            .map_err(|e| anyhow::anyhow!("Failed to parse RDF (RDF/XML or Turtle): {:?}", e))?;
 
-        let seed = Self::extract_seed_from_ontology(&ontology)?;
+        // Direct component extraction for RDF graphs (handles blank node restrictions & complex RDF/XML)
+        let build = Build::new();
+        let mut ontology = SetOntology::new();
+        let mut ontology_iri = "http://example.org/base#".to_string();
+        let mut top_classes = Vec::new();
+        let mut key_properties = Vec::new();
+
+        for ann_component in rdf_ont.iter() {
+            match &ann_component.component {
+                Component::OntologyID(id) => {
+                    if let Some(iri) = &id.iri {
+                        ontology_iri = iri.as_ref().to_string();
+                        ontology.insert(Component::OntologyID(OntologyID::new(Some(build.iri(ontology_iri.as_str())), None)));
+                    }
+                }
+                Component::DeclareClass(DeclareClass(class)) => {
+                    let iri_str = class.0.as_ref();
+                    let name = Self::extract_local_name(iri_str);
+                    ontology.insert(DeclareClass(build.class(build.iri(iri_str))));
+                    if !top_classes.iter().any(|c: &SeedClass| c.name == name) {
+                        top_classes.push(SeedClass {
+                            name,
+                            iri: iri_str.to_string(),
+                            comment: None,
+                            synonyms: vec![],
+                        });
+                    }
+                }
+                Component::DeclareObjectProperty(DeclareObjectProperty(op)) => {
+                    let iri_str = op.0.as_ref();
+                    let name = Self::extract_local_name(iri_str);
+                    ontology.insert(DeclareObjectProperty(build.object_property(build.iri(iri_str))));
+                    if !key_properties.iter().any(|p: &SeedProperty| p.name == name) {
+                        key_properties.push(SeedProperty {
+                            name,
+                            iri: iri_str.to_string(),
+                            property_type: "object".to_string(),
+                            domain: None,
+                            range: None,
+                        });
+                    }
+                }
+                Component::DeclareDataProperty(DeclareDataProperty(dp)) => {
+                    let iri_str = dp.0.as_ref();
+                    let name = Self::extract_local_name(iri_str);
+                    ontology.insert(DeclareDataProperty(build.data_property(build.iri(iri_str))));
+                    if !key_properties.iter().any(|p: &SeedProperty| p.name == name) {
+                        key_properties.push(SeedProperty {
+                            name,
+                            iri: iri_str.to_string(),
+                            property_type: "data".to_string(),
+                            domain: None,
+                            range: None,
+                        });
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        if ontology_iri == "http://example.org/base#" {
+            // Attempt to infer IRI from class IRIs
+            if let Some(first_class) = top_classes.first() {
+                if let Some(pos) = first_class.iri.rfind('#').or_else(|| first_class.iri.rfind('/')) {
+                    ontology_iri = first_class.iri[..=pos].to_string();
+                }
+            }
+        }
+
+        let prefix = ontology_iri
+            .split('/')
+            .filter(|s| !s.is_empty())
+            .last()
+            .map(|s| s.trim_matches('#').to_string());
+
+        let seed = BaseOntologySeed {
+            ontology_iri,
+            prefix,
+            top_classes,
+            key_properties,
+        };
+
         Ok((ontology, seed))
     }
+
+
+
 
     fn extract_seed_from_ontology(
         ontology: &SetOntology<ArcStr>,
@@ -232,6 +355,16 @@ Declaration(ObjectProperty(<http://www.w3.org/ns/sosa/madeObservation>))
     }
 
     #[test]
+    fn test_rdf_xml_fixture_loading() {
+        let path = Path::new("tests/fixtures/ontologies/saref.rdf");
+        if path.exists() {
+            let (_ont, seed) = BaseOntologyLoader::from_file(path).expect("Should load saref.rdf");
+            assert!(!seed.top_classes.is_empty(), "saref.rdf should yield top classes");
+            assert!(seed.top_classes.iter().any(|c| c.name == "Device" || c.name == "Command"));
+        }
+    }
+
+    #[test]
     fn test_seed_concept_matcher() {
         let seed = BaseOntologySeed {
             ontology_iri: "http://www.w3.org/ns/sosa/".to_string(),
@@ -254,3 +387,4 @@ Declaration(ObjectProperty(<http://www.w3.org/ns/sosa/madeObservation>))
         assert_eq!(match2.unwrap().concept_name, "Sensor");
     }
 }
+

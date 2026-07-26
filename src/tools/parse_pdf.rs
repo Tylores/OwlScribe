@@ -59,11 +59,12 @@ pub fn execute(args: ParsePdfToTermsArgs) -> McpToolCallResult {
     }
 
     let loaded_seed = if let Some(ref base_path) = args.base_ontology_path {
-        match BaseOntologyLoader::from_ofn_file(base_path) {
+        match BaseOntologyLoader::from_file(base_path) {
             Ok((_ont, seed)) => Some(seed),
             Err(e) => return McpToolCallResult::error(format!("Failed to load base ontology: {:#}", e)),
         }
     } else {
+
         args.base_ontology_seed
     };
 

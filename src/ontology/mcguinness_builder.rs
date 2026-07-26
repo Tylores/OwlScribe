@@ -67,7 +67,9 @@ pub struct McGuinnessOntologyInput {
     pub individuals: Vec<IndividualDefinition>,
     #[serde(default)]
     pub imports: Vec<String>,
+    #[serde(default)]
     pub base_ontology_path: Option<String>,
+    #[serde(default)]
     pub base_ontology_content: Option<String>,
     #[serde(default)]
     pub class_mappings: Vec<ClassMapping>,
@@ -102,22 +104,23 @@ impl McGuinnessBuilder {
         let mut ontology: SetOntology<ArcStr> = SetOntology::new();
         ontology.insert(Component::OntologyID(OntologyID::new(Some(ont_iri), None)));
 
-        // Base Graph Loading & Merging
+        // Base Graph Loading & Merging (Supports .ofn, .rdf, .ttl)
         if let Some(ref path) = input.base_ontology_path {
-            let (base_ont, _seed) = BaseOntologyLoader::from_ofn_file(path)?;
+            let (base_ont, _seed) = BaseOntologyLoader::from_file(path)?;
             for component in base_ont.iter() {
                 if !matches!(&component.component, Component::OntologyID(_)) {
                     ontology.insert(component.clone());
                 }
             }
         } else if let Some(ref content) = input.base_ontology_content {
-            let (base_ont, _seed) = BaseOntologyLoader::from_ofn_str(content)?;
+            let (base_ont, _seed) = BaseOntologyLoader::from_str(content)?;
             for component in base_ont.iter() {
                 if !matches!(&component.component, Component::OntologyID(_)) {
                     ontology.insert(component.clone());
                 }
             }
         }
+
 
 
         // OWL Imports
