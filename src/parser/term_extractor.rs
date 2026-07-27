@@ -100,6 +100,38 @@ pub struct ParsePdfToTermsResult {
     pub detected_sections: Vec<String>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PdfSectionInfo {
+    pub id: String,
+    pub section_number: Option<String>,
+    pub title: String,
+    pub page_start: usize,
+    pub page_end: usize,
+    pub preview_snippet: String,
+    pub is_normative_candidate: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PdfSectionListResult {
+    pub pdf_path: String,
+    pub document_title: String,
+    pub detected_spec_type: SpecType,
+    pub total_sections: usize,
+    pub sections: Vec<PdfSectionInfo>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReadPdfSectionResult {
+    pub pdf_path: String,
+    pub section_id: String,
+    pub section_title: String,
+    pub page_range: String,
+    pub page_start: usize,
+    pub page_end: usize,
+    pub character_count: usize,
+    pub text: String,
+    pub section_extraction: ParsePdfToTermsResult,
+}
 
 pub struct TermExtractor;
 
@@ -116,12 +148,185 @@ impl TermExtractor {
         let raw_text = match pdf_extract::extract_text_from_mem(&pdf_bytes) {
             Ok(text) => text,
             Err(_) => {
-                // Fallback attempt with lopdf if pdf-extract fails
                 Self::extract_with_lopdf(&pdf_bytes).unwrap_or_default()
             }
         };
 
         Self::parse_raw_text(&raw_text, pdf_path.to_string_lossy().as_ref(), spec_type_override, min_confidence, base_seed)
+    }
+
+    pub fn extract_pages_with_numbers(pdf_bytes: &[u8]) -> Vec<(usize, String)> {
+        if let Ok(doc) = lopdf::Document::load_mem(pdf_bytes) {
+            let mut pages = Vec::new();
+            for page_num in 1..=doc.get_pages().len() as u32 {
+                if let Ok(text) = doc.extract_text(&[page_num]) {
+                    pages.push((page_num as usize, text));
+                }
+            }
+            if !pages.is_empty() {
+                return pages;
+            }
+        }
+
+        let raw = pdf_extract::extract_text_from_mem(pdf_bytes).unwrap_or_default();
+        let page_chunks: Vec<&str> = raw.split('\x0C').collect();
+        let mut pages = Vec::new();
+        for (idx, chunk) in page_chunks.iter().enumerate() {
+            pages.push((idx + 1, chunk.to_string()));
+        }
+        if pages.is_empty() {
+            pages.push((1, raw));
+        }
+        pages
+    }
+
+    pub fn get_pdf_sections(
+        pdf_path: &Path,
+        spec_type_override: Option<SpecType>,
+    ) -> Result<PdfSectionListResult> {
+        let pdf_bytes = std::fs::read(pdf_path)
+            .with_context(|| format!("Failed to read PDF file at '{}'", pdf_path.display()))?;
+
+        let pages = Self::extract_pages_with_numbers(&pdf_bytes);
+        let full_text: String = pages.iter().map(|(_, t)| t.as_str()).collect::<Vec<_>>().join("\n");
+
+        let spec_type = match spec_type_override {
+            Some(SpecType::Auto) | None => SpecProfile::detect_type(&full_text),
+            Some(t) => t,
+        };
+
+        let doc_title = Self::extract_title(&full_text, pdf_path.to_string_lossy().as_ref());
+
+        let mut section_entries: Vec<PdfSectionInfo> = Vec::new();
+        let re_sec = Regex::new(r"(?m)^(?:([0-9]+(?:\.[0-9]+)*)|Clause\s+([0-9]+(?:\.[0-9]+)*)|Annex\s+([A-Z]))\s+([^\n]+)").unwrap();
+
+        for (page_num, page_text) in &pages {
+            for line in page_text.lines() {
+                let trimmed = line.trim();
+                if trimmed.is_empty() || trimmed.len() < 3 {
+                    continue;
+                }
+
+                if let Some(cap) = re_sec.captures(trimmed) {
+                    let sec_num = cap.get(1).or_else(|| cap.get(2)).or_else(|| cap.get(3)).map(|m| m.as_str().to_string());
+                    let title = trimmed.to_string();
+
+                    let lower = title.to_lowercase();
+                    let is_normative = lower.contains("term")
+                        || lower.contains("definition")
+                        || lower.contains("architecture")
+                        || lower.contains("domain")
+                        || lower.contains("scope")
+                        || lower.contains("concept")
+                        || lower.contains("model")
+                        || lower.contains("requirement");
+
+                    let sec_id = format!("sec_{}", section_entries.len() + 1);
+
+                    if let Some(prev) = section_entries.last_mut() {
+                        prev.page_end = *page_num;
+                    }
+
+                    section_entries.push(PdfSectionInfo {
+                        id: sec_id,
+                        section_number: sec_num,
+                        title: title.clone(),
+                        page_start: *page_num,
+                        page_end: *page_num,
+                        preview_snippet: if trimmed.len() > 100 { trimmed[..100].to_string() } else { trimmed.to_string() },
+                        is_normative_candidate: is_normative,
+                    });
+                }
+            }
+        }
+
+        if section_entries.is_empty() {
+            let total_p = pages.len();
+            section_entries.push(PdfSectionInfo {
+                id: "sec_1".to_string(),
+                section_number: Some("1".to_string()),
+                title: "1. Specification Body and Definitions".to_string(),
+                page_start: 1,
+                page_end: total_p,
+                preview_snippet: "Full document specification body.".to_string(),
+                is_normative_candidate: true,
+            });
+        } else if let Some(last) = section_entries.last_mut() {
+            last.page_end = pages.last().map(|(p, _)| *p).unwrap_or(1);
+        }
+
+        let count = section_entries.len();
+
+        Ok(PdfSectionListResult {
+            pdf_path: pdf_path.to_string_lossy().to_string(),
+            document_title: doc_title,
+            detected_spec_type: spec_type,
+            total_sections: count,
+            sections: section_entries,
+        })
+    }
+
+    pub fn read_pdf_section(
+        pdf_path: &Path,
+        section_id: Option<&str>,
+        section_title: Option<&str>,
+        page_start_opt: Option<usize>,
+        page_end_opt: Option<usize>,
+        spec_type_override: Option<SpecType>,
+        min_confidence: Option<f64>,
+        base_seed: Option<&BaseOntologySeed>,
+    ) -> Result<ReadPdfSectionResult> {
+        let sec_list = Self::get_pdf_sections(pdf_path, spec_type_override)?;
+        let pages = {
+            let bytes = std::fs::read(pdf_path)?;
+            Self::extract_pages_with_numbers(&bytes)
+        };
+
+        let target_sec = if let Some(sid) = section_id {
+            sec_list.sections.iter().find(|s| s.id.eq_ignore_ascii_case(sid) || s.section_number.as_deref() == Some(sid)).cloned()
+        } else if let Some(stitle) = section_title {
+            sec_list.sections.iter().find(|s| s.title.to_lowercase().contains(&stitle.to_lowercase())).cloned()
+        } else {
+            None
+        };
+
+        let (p_start, p_end, sec_id_str, sec_title_str) = if let Some(ts) = target_sec {
+            (ts.page_start, ts.page_end, ts.id, ts.title)
+        } else {
+            let p_start = page_start_opt.unwrap_or(1);
+            let p_end = page_end_opt.unwrap_or_else(|| pages.last().map(|(p, _)| *p).unwrap_or(1));
+            (p_start, p_end, "custom_range".to_string(), format!("Pages {}-{}", p_start, p_end))
+        };
+
+        let mut section_text = String::new();
+        for (page_num, text) in &pages {
+            if *page_num >= p_start && *page_num <= p_end {
+                section_text.push_str(text);
+                section_text.push('\n');
+            }
+        }
+
+        let section_extraction = Self::parse_raw_text(
+            &section_text,
+            pdf_path.to_string_lossy().as_ref(),
+            spec_type_override,
+            min_confidence,
+            base_seed,
+        )?;
+
+        let char_count = section_text.len();
+
+        Ok(ReadPdfSectionResult {
+            pdf_path: pdf_path.to_string_lossy().to_string(),
+            section_id: sec_id_str,
+            section_title: sec_title_str,
+            page_range: format!("Pages {}-{}", p_start, p_end),
+            page_start: p_start,
+            page_end: p_end,
+            character_count: char_count,
+            text: section_text,
+            section_extraction,
+        })
     }
 
     fn extract_with_lopdf(pdf_bytes: &[u8]) -> Result<String> {
@@ -152,12 +357,10 @@ impl TermExtractor {
 
         let profile = SpecProfile::for_type(spec_type);
 
-        // Detect headings & sections
         let sections = Self::detect_sections(content);
         let normative_references = Self::extract_references(content, &profile);
         let mut candidate_terms = Self::extract_terms(content, &profile, min_conf);
 
-        // Build Term Alignment Matrix & Apply Seed Concept Alignment
         let mut term_alignment_matrix = Vec::new();
 
         if let Some(seed) = base_seed {
@@ -185,7 +388,6 @@ impl TermExtractor {
             }
         }
 
-        // Automated Axiom & Relationship Mining (McGuinness Steps 5-6)
         let mined_relationships = Self::mine_relationships(content, &candidate_terms);
 
         let rfc_keywords = Self::extract_rfc2119_keywords(content);
@@ -328,8 +530,6 @@ impl TermExtractor {
     fn extract_terms(content: &str, profile: &SpecProfile, min_confidence: f64) -> Vec<TermCandidate> {
         let mut candidates = Vec::new();
 
-        // Pattern 1: ISO/IEEE style numbered terms: "3.1 term\n definition text"
-        // Pattern 2: "Term: definition text" or "Term — definition text"
         let re_colon = Regex::new(r"(?m)^(?:\d+\.\d+(?:\.\d+)?\s+)?([A-Z][a-zA-Z0-9\s_\-]{2,40})\s*[:—\-]\s*(.+)").ok();
         let re_class_def = Regex::new(r"(?i)\b(?:Class|Property)\s+(?:s4grid:|saref4grid:)?([A-Z][a-zA-Z0-9]+)\b").ok();
         let re_rfc = Regex::new(r"(?i)\b(MUST|SHALL|SHOULD|MAY|RECOMMENDED|REQUIRED|OPTIONAL)\b").ok();
@@ -345,7 +545,6 @@ impl TermExtractor {
 
                 let lower_def = def.to_lowercase();
 
-                // Section Weighting & Section Awareness
                 let base_weight = if profile.terms_section_titles.iter().any(|t| lower_def.contains(t)) {
                     0.95
                 } else if def.contains("is defined as") || def.contains("refers to") || def.contains("means") {
@@ -397,7 +596,6 @@ impl TermExtractor {
             }
         }
 
-        // Search for explicit SAREF / domain class declarations in the specification text
         if let Some(regex) = re_class_def {
             for cap in regex.captures_iter(content) {
                 let term = cap.get(1).map_or("", |m| m.as_str()).trim().to_string();
@@ -416,7 +614,6 @@ impl TermExtractor {
             }
         }
 
-        // If no term candidates matched colon regex, parse fallback line-by-line definitions
         if candidates.is_empty() {
             for line in content.lines() {
                 let trimmed = line.trim();
@@ -450,14 +647,12 @@ impl TermExtractor {
         candidates
     }
 
-    /// NLP / Stopword & Domain Noise Filtering
     fn is_noise_term(term: &str) -> bool {
         let lower = term.to_lowercase().trim().to_string();
         if lower.len() < 2 {
             return true;
         }
 
-        // Stopword list & POS filtering (modal verbs, prepositions, conjunctions, administrative document terms)
         let noise_words = [
             "where", "should", "sous", "must", "shall", "can", "may", "would", "could",
             "with", "from", "into", "over", "under", "between", "through", "during", "after", "before",
@@ -488,7 +683,6 @@ impl TermExtractor {
             return true;
         }
 
-        // Single word pure lowercase terms that are short and non-noun/stopwords
         if !term.contains(' ') && term.chars().all(|c| c.is_lowercase()) && (lower == "where" || lower == "should" || lower == "sous" || lower.len() <= 3) {
             return true;
         }
@@ -496,13 +690,11 @@ impl TermExtractor {
         false
     }
 
-    /// Mining relationships directly from prose (McGuinness Steps 5-6)
     fn mine_relationships(content: &str, _candidates: &[TermCandidate]) -> McGuinnessStep5_6MinedRelationships {
         let mut subclass_relations = Vec::new();
         let mut object_properties = Vec::new();
         let mut data_properties = Vec::new();
 
-        // 1. Mine Subclass Relationships
         let re_subclass = Regex::new(r"(?i)\b([A-Z][a-zA-Z0-9_-]+)\s+(?:is\s+a\s+subclass\s+of|is\s+a\s+type\s+of|is\s+a\s+kind\s+of|extends|subclass\s+of)\s+([A-Z][a-zA-Z0-9_-]+)\b").ok();
         if let Some(regex) = re_subclass {
             for cap in regex.captures_iter(content) {
@@ -521,7 +713,6 @@ impl TermExtractor {
             }
         }
 
-        // 2. Mine Object Property Links
         let re_obj_prop = Regex::new(r"(?i)\b([A-Z][a-zA-Z0-9_-]+)\s+(has|contains|connects\s+to|targets|measures|controls|observes)\s+(?:a\s+|an\s+|the\s+)?([A-Z][a-zA-Z0-9_-]+)\b").ok();
         if let Some(regex) = re_obj_prop {
             for cap in regex.captures_iter(content) {
@@ -544,7 +735,6 @@ impl TermExtractor {
             }
         }
 
-        // 3. Mine Measurement & Data Property Links
         let re_data_prop = Regex::new(r"(?i)\b([A-Z][a-zA-Z0-9_-]+|[a-z][a-zA-Z0-9_-]+)\s+(?:is\s+)?measured\s+in\s+([A-Za-z0-9_\-\/]+)\b").ok();
         if let Some(regex) = re_data_prop {
             for cap in regex.captures_iter(content) {
@@ -649,4 +839,3 @@ An implementation SHOULD log warning messages.
         }
     }
 }
-

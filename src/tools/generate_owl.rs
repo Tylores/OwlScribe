@@ -1,6 +1,7 @@
 use crate::mcp::protocol::{McpTool, McpToolCallResult};
 use crate::ontology::mcguinness_builder::{McGuinnessBuilder, McGuinnessOntologyInput};
 use crate::ontology::serializer::{OntologyFormat, OntologySerializer};
+use crate::ontology::staging::STAGED_INVENTORY;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
@@ -26,7 +27,7 @@ pub struct GenerateOwlOntologyResponse {
 pub fn tool_definition() -> McpTool {
     McpTool {
         name: "generate_owl_ontology".to_string(),
-        description: "Step 2 of 2: Executes McGuinness 7-Step structuring logic (Steps 4-7: Classes/Hierarchy, Properties, Facets/Restrictions, Instances) and performs full W3C OWL 2 graph binding (owl:imports, rdfs:subClassOf, owl:equivalentClass) against base domain ontologies using horned-owl. Emits serialized ontology in Turtle (default), JSON-LD, OFN, or RDF/XML.".to_string(),
+        description: "Phase 4: Executes McGuinness 7-Step structuring logic (Steps 4-7: Classes/Hierarchy, Properties, Facets/Restrictions, Instances), incorporates all section terms staged via propose_ontology_terms, and performs full W3C OWL 2 graph binding against base domain ontologies using horned-owl. Emits serialized ontology in Turtle (default), JSON-LD, OFN, or RDF/XML.".to_string(),
         input_schema: json!({
             "type": "object",
             "properties": {
@@ -128,15 +129,49 @@ pub fn tool_definition() -> McpTool {
                     }
                 }
             },
-            "required": ["ontology_iri", "classes"]
+            "required": ["ontology_iri"]
         }),
     }
 }
 
 pub fn execute(args: GenerateOwlOntologyArgs) -> McpToolCallResult {
     let fmt = args.format.unwrap_or(OntologyFormat::Ofn);
+    let mut input = args.input;
 
-    match McGuinnessBuilder::build(args.input) {
+    if let Ok(staged) = STAGED_INVENTORY.lock() {
+        for sc in &staged.classes {
+            if !input.classes.iter().any(|c| c.name.eq_ignore_ascii_case(&sc.name)) {
+                input.classes.push(sc.clone());
+            }
+        }
+        for sop in &staged.object_properties {
+            if !input.object_properties.iter().any(|p| p.name.eq_ignore_ascii_case(&sop.name)) {
+                input.object_properties.push(sop.clone());
+            }
+        }
+        for sdp in &staged.data_properties {
+            if !input.data_properties.iter().any(|p| p.name.eq_ignore_ascii_case(&sdp.name)) {
+                input.data_properties.push(sdp.clone());
+            }
+        }
+        for ind in &staged.individuals {
+            if !input.individuals.iter().any(|i| i.name.eq_ignore_ascii_case(&ind.name)) {
+                input.individuals.push(ind.clone());
+            }
+        }
+        for cm in &staged.class_mappings {
+            if !input.class_mappings.iter().any(|m| m.term.eq_ignore_ascii_case(&cm.term)) {
+                input.class_mappings.push(cm.clone());
+            }
+        }
+        for pm in &staged.property_mappings {
+            if !input.property_mappings.iter().any(|m| m.property_name.eq_ignore_ascii_case(&pm.property_name)) {
+                input.property_mappings.push(pm.clone());
+            }
+        }
+    }
+
+    match McGuinnessBuilder::build(input) {
         Ok(built) => match OntologySerializer::serialize(&built.ontology, fmt) {
             Ok(serialized) => {
                 let resp = GenerateOwlOntologyResponse {
