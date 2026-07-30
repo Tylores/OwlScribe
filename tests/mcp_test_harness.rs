@@ -67,6 +67,7 @@ fn run_mcp_ontology_pipeline_harness() {
         base_ontology_content: None,
         class_mappings: vec![],
         property_mappings: vec![],
+        saref_patterns: vec![],
     };
 
     let res_pass1 = generate_owl::execute(GenerateOwlOntologyArgs {
@@ -163,6 +164,7 @@ fn run_mcp_ontology_pipeline_harness() {
         base_ontology_content: None,
         class_mappings: class_mappings_pass2,
         property_mappings: vec![],
+        saref_patterns: vec![],
     };
 
     let res_pass2 = generate_owl::execute(GenerateOwlOntologyArgs {

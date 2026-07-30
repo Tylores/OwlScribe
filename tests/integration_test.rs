@@ -56,6 +56,7 @@ ISO/IEC 27001 Information technology — Security techniques.
         base_ontology_content: None,
         class_mappings: vec![],
         property_mappings: vec![],
+        saref_patterns: vec![],
     };
 
     // Step 3: Execute tool generate_owl_ontology

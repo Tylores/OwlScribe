@@ -85,6 +85,7 @@ ISO/IEC 27000 Information security.
             mapping_type: "equivalentClass".to_string(),
         }],
         property_mappings: vec![],
+        saref_patterns: vec![],
     };
 
     let gen_args = GenerateOwlOntologyArgs {

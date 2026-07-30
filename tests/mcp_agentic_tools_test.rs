@@ -37,6 +37,7 @@ fn test_agentic_3_phase_parsing_workflow() {
         min_confidence: Some(0.3),
         base_ontology_path: None,
         base_ontology_seed: None,
+        saref_patterns: None,
     });
     assert!(read_res.is_error.is_none(), "read_pdf_section failed: {:?}", read_res.content);
 
@@ -63,6 +64,7 @@ fn test_agentic_3_phase_parsing_workflow() {
         individuals: None,
         class_mappings: None,
         property_mappings: None,
+        saref_patterns: None,
         clear_staging: Some(true),
     });
     assert!(propose_res.is_error.is_none(), "propose_ontology_terms failed: {:?}", propose_res.content);
@@ -84,6 +86,7 @@ fn test_agentic_3_phase_parsing_workflow() {
             base_ontology_content: None,
             class_mappings: vec![],
             property_mappings: vec![],
+            saref_patterns: vec![],
         },
         format: Some(OntologyFormat::Turtle),
     });
