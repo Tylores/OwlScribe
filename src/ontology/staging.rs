@@ -16,6 +16,8 @@ pub struct StagedOntologyInventory {
     pub class_mappings: Vec<ClassMapping>,
     pub property_mappings: Vec<PropertyMapping>,
     pub staged_sections: Vec<String>,
+    #[serde(default)]
+    pub saref_patterns: Vec<String>,
 }
 
 impl StagedOntologyInventory {
@@ -50,6 +52,7 @@ impl StagedOntologyInventory {
         self.class_mappings.clear();
         self.property_mappings.clear();
         self.staged_sections.clear();
+        self.saref_patterns.clear();
         self.save_session();
     }
 
@@ -114,6 +117,15 @@ impl StagedOntologyInventory {
                 *existing = m;
             } else {
                 self.property_mappings.push(m);
+            }
+        }
+        self.save_session();
+    }
+
+    pub fn add_saref_patterns(&mut self, patterns: Vec<String>) {
+        for p in patterns {
+            if !self.saref_patterns.iter().any(|existing| existing.eq_ignore_ascii_case(&p)) {
+                self.saref_patterns.push(p);
             }
         }
         self.save_session();
