@@ -16,6 +16,7 @@ pub struct ProposeOntologyTermsArgs {
     pub individuals: Option<Vec<IndividualDefinition>>,
     pub class_mappings: Option<Vec<ClassMapping>>,
     pub property_mappings: Option<Vec<PropertyMapping>>,
+    pub saref_patterns: Option<Vec<String>>,
     pub clear_staging: Option<bool>,
 }
 
@@ -28,6 +29,7 @@ pub struct ProposeOntologyTermsResponse {
     pub total_staged_data_properties: usize,
     pub total_staged_individuals: usize,
     pub total_staged_class_mappings: usize,
+    pub total_staged_saref_patterns: usize,
     pub summary_markdown: String,
     pub validation_warnings: Vec<String>,
 }
@@ -35,7 +37,7 @@ pub struct ProposeOntologyTermsResponse {
 pub fn tool_definition() -> McpTool {
     McpTool {
         name: "propose_ontology_terms".to_string(),
-        description: "Phase 3: Agent-facing tool to stage, classify (owl:Class, owl:ObjectProperty, owl:DatatypeProperty), and validate discovered ontology terms, candidate superclasses, and base ontology mappings section-by-section prior to final serialization.".to_string(),
+        description: "Phase 3: Agent-facing tool to stage, classify (owl:Class, owl:ObjectProperty, owl:DatatypeProperty), and validate discovered ontology terms, candidate superclasses, base ontology mappings, and SAREF design patterns section-by-section prior to final serialization.".to_string(),
         input_schema: json!({
             "type": "object",
             "properties": {
@@ -110,6 +112,11 @@ pub fn tool_definition() -> McpTool {
                         "required": ["term", "target_iri"]
                     }
                 },
+                "saref_patterns": {
+                    "type": "array",
+                    "description": "List of ETSI SAREF Design Patterns to apply (e.g. ['feature_of_interest', 'measurement', 'command_function', 'system_topology', 'state_commodity']).",
+                    "items": { "type": "string" }
+                },
                 "clear_staging": {
                     "type": "boolean",
                     "description": "Optional flag to reset and clear all staged terms before adding."
@@ -151,6 +158,9 @@ pub fn execute(args: ProposeOntologyTermsArgs) -> McpToolCallResult {
     }
     if let Some(pm) = args.property_mappings {
         inventory.add_property_mappings(pm);
+    }
+    if let Some(sp) = args.saref_patterns {
+        inventory.add_saref_patterns(sp);
     }
 
     let mut warnings = Vec::new();
@@ -199,6 +209,7 @@ pub fn execute(args: ProposeOntologyTermsArgs) -> McpToolCallResult {
         total_staged_data_properties: inventory.data_properties.len(),
         total_staged_individuals: inventory.individuals.len(),
         total_staged_class_mappings: inventory.class_mappings.len(),
+        total_staged_saref_patterns: inventory.saref_patterns.len(),
         summary_markdown: summary,
         validation_warnings: warnings,
     };

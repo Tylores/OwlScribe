@@ -17,6 +17,8 @@ pub struct TermCandidate {
     pub mapped_base_concept: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mapping_relation: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub saref_pattern_role: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -388,6 +390,12 @@ impl TermExtractor {
             }
         }
 
+        for cand in &mut candidate_terms {
+            if cand.saref_pattern_role.is_none() {
+                cand.saref_pattern_role = Self::classify_saref_role(&cand.term, &cand.definition);
+            }
+        }
+
         let mined_relationships = Self::mine_relationships(content, &candidate_terms);
 
         let rfc_keywords = Self::extract_rfc2119_keywords(content);
@@ -481,6 +489,31 @@ impl TermExtractor {
         }
 
         suggestions
+    }
+
+    pub fn classify_saref_role(term: &str, definition: &str) -> Option<String> {
+        let t_low = term.to_lowercase();
+        let d_low = definition.to_lowercase();
+
+        if t_low.contains("sensor") || t_low.contains("meter") || t_low.contains("inverter") || t_low.contains("device") || t_low.contains("actuator") || d_low.contains("device") || d_low.contains("hardware unit") {
+            Some("saref:Device".to_string())
+        } else if t_low.contains("measurement") || t_low.contains("reading") || t_low.contains("observation") || d_low.contains("measured value") || d_low.contains("quantitative observation") {
+            Some("saref:Measurement".to_string())
+        } else if t_low.contains("property") || t_low.contains("voltage") || t_low.contains("current") || t_low.contains("power") || t_low.contains("frequency") || t_low.contains("temperature") || t_low.contains("impedance") || d_low.contains("property") || d_low.contains("attribute of") {
+            Some("saref:Property".to_string())
+        } else if t_low.contains("function") || t_low.contains("capability") || d_low.contains("functionality") {
+            Some("saref:Function".to_string())
+        } else if t_low.contains("command") || t_low.contains("control") || t_low.contains("signal") || t_low.contains("setpoint") || d_low.contains("command") {
+            Some("saref:Command".to_string())
+        } else if t_low.contains("system") || t_low.contains("grid") || t_low.contains("feeder") || t_low.contains("topology") || d_low.contains("system of components") {
+            Some("saref:System".to_string())
+        } else if t_low.contains("state") || t_low.contains("mode") || d_low.contains("state of operation") {
+            Some("saref:State".to_string())
+        } else if t_low.contains("commodity") || t_low.contains("electricity") || t_low.contains("energy") || t_low.contains("water") || t_low.contains("gas") {
+            Some("saref:Commodity".to_string())
+        } else {
+            None
+        }
     }
 
     fn extract_title(content: &str, fallback: &str) -> String {
@@ -592,6 +625,7 @@ impl TermExtractor {
                     context_snippet: snippet,
                     mapped_base_concept: None,
                     mapping_relation: None,
+                    saref_pattern_role: None,
                 });
             }
         }
@@ -609,6 +643,7 @@ impl TermExtractor {
                         context_snippet: format!("Class definition for {}", term),
                         mapped_base_concept: None,
                         mapping_relation: None,
+                        saref_pattern_role: None,
                     });
                 }
             }
@@ -637,6 +672,7 @@ impl TermExtractor {
                                 context_snippet: trimmed.to_string(),
                                 mapped_base_concept: None,
                                 mapping_relation: None,
+                                saref_pattern_role: None,
                             });
                         }
                     }

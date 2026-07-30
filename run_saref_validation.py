@@ -95,6 +95,7 @@ def main():
             "classes": class_defs,
             "object_properties": object_properties,
             "data_properties": data_properties,
+            "saref_patterns": ["feature_of_interest", "measurement", "command_function", "system_topology", "state_commodity"],
             "clear_staging": True
         })
         print(f"Staging status: {propose_res.get('status')}. Total staged classes: {propose_res.get('total_staged_classes')}.")
@@ -106,7 +107,8 @@ def main():
             "format": "turtle",
             "classes": [],
             "object_properties": [],
-            "data_properties": []
+            "data_properties": [],
+            "saref_patterns": ["feature_of_interest", "measurement", "command_function", "system_topology", "state_commodity"]
         })
         
         serialized_ttl = gen_res["serialized_ontology"]

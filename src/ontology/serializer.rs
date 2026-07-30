@@ -191,7 +191,8 @@ impl OntologySerializer {
         out.push_str("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n");
         out.push_str("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n");
         out.push_str("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n");
-        out.push_str("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n");
+        out.push_str("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n");
+        out.push_str("@prefix saref: <https://saref.etsi.org/core/> .\n\n");
 
         let mut ontology_iri = None;
         let mut imports = Vec::new();

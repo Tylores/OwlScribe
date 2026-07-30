@@ -1,4 +1,5 @@
 use crate::ontology::base_ontology::BaseOntologyLoader;
+use crate::ontology::saref_patterns::{SarefPattern, SarefPatternRegistry, SAREF_CORE_IRI};
 use anyhow::Result;
 use horned_owl::model::*;
 use horned_owl::ontology::set::SetOntology;
@@ -75,6 +76,8 @@ pub struct McGuinnessOntologyInput {
     pub class_mappings: Vec<ClassMapping>,
     #[serde(default)]
     pub property_mappings: Vec<PropertyMapping>,
+    #[serde(default)]
+    pub saref_patterns: Vec<String>,
 }
 
 #[derive(Debug)]
@@ -121,7 +124,12 @@ impl McGuinnessBuilder {
             }
         }
 
-
+        // SAREF Design Pattern Baselines Injection
+        for pat_str in &input.saref_patterns {
+            if let Some(pattern) = SarefPattern::from_str(pat_str) {
+                SarefPatternRegistry::apply_pattern(&pattern, &mut ontology);
+            }
+        }
 
         // OWL Imports
         for import_iri in &input.imports {
@@ -134,16 +142,29 @@ impl McGuinnessBuilder {
         let mut data_prop_count = 0;
         let mut individual_count = 0;
 
+        let saref_core_classes = [
+            "FeatureOfInterest", "Property", "Measurement", "Function",
+            "Command", "Device", "State", "Task", "Commodity", "System", "UnitOfMeasure"
+        ];
+
         // Step 4: Define Classes & Class Hierarchy
         for class_def in &input.classes {
-            let class_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(&class_def.name));
+            let is_saref_core = saref_core_classes.iter().any(|&sc| sc.eq_ignore_ascii_case(&class_def.name));
+            let class_iri_str = if is_saref_core && !input.saref_patterns.is_empty() {
+                format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(&class_def.name))
+            } else {
+                format!("{}{}", base_iri, Self::sanitize_identifier(&class_def.name))
+            };
             let class = build.class(build.iri(class_iri_str.as_str()));
             ontology.insert(DeclareClass(class.clone()));
             class_count += 1;
 
             if let Some(ref parent_name) = class_def.parent_class {
+                let parent_is_saref = saref_core_classes.iter().any(|&sc| sc.eq_ignore_ascii_case(parent_name));
                 let parent_iri_str = if parent_name.starts_with("http://") || parent_name.starts_with("https://") {
                     parent_name.clone()
+                } else if parent_is_saref && (!input.saref_patterns.is_empty() || parent_name.starts_with("saref:")) {
+                    format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(parent_name.trim_start_matches("saref:")))
                 } else {
                     format!("{}{}", base_iri, Self::sanitize_identifier(parent_name))
                 };
@@ -184,13 +205,25 @@ impl McGuinnessBuilder {
 
         // Step 5 & 6: Object Properties, Domains, Ranges
         for op_def in &input.object_properties {
-            let op_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(&op_def.name));
+            let is_saref_prop = op_def.name.starts_with("saref:") || ["hasProperty", "isPropertyOf", "makesMeasurement", "relatesToProperty", "isMeasuredIn", "hasFunction", "hasCommand", "actsUpon", "hasSubsystem", "connectsTo", "hasState", "isConsumedBy"].iter().any(|&p| p.eq_ignore_ascii_case(&op_def.name));
+            let op_iri_str = if is_saref_prop && !input.saref_patterns.is_empty() {
+                format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(op_def.name.trim_start_matches("saref:")))
+            } else {
+                format!("{}{}", base_iri, Self::sanitize_identifier(&op_def.name))
+            };
             let op = build.object_property(build.iri(op_iri_str.as_str()));
             ontology.insert(DeclareObjectProperty(op.clone()));
             object_prop_count += 1;
 
             if let Some(ref dom_name) = op_def.domain {
-                let dom_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(dom_name));
+                let dom_is_saref = saref_core_classes.iter().any(|&sc| sc.eq_ignore_ascii_case(dom_name));
+                let dom_iri_str = if dom_name.starts_with("http://") || dom_name.starts_with("https://") {
+                    dom_name.clone()
+                } else if (!input.saref_patterns.is_empty() || dom_name.starts_with("saref:")) && dom_is_saref {
+                    format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(dom_name.trim_start_matches("saref:")))
+                } else {
+                    format!("{}{}", base_iri, Self::sanitize_identifier(dom_name))
+                };
                 let dom_class = build.class(build.iri(dom_iri_str.as_str()));
                 let dom_axiom = ObjectPropertyDomain {
                     ope: ObjectPropertyExpression::ObjectProperty(op.clone()),
@@ -200,7 +233,14 @@ impl McGuinnessBuilder {
             }
 
             if let Some(ref range_name) = op_def.range {
-                let range_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(range_name));
+                let range_is_saref = saref_core_classes.iter().any(|&sc| sc.eq_ignore_ascii_case(range_name));
+                let range_iri_str = if range_name.starts_with("http://") || range_name.starts_with("https://") {
+                    range_name.clone()
+                } else if (!input.saref_patterns.is_empty() || range_name.starts_with("saref:")) && range_is_saref {
+                    format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(range_name.trim_start_matches("saref:")))
+                } else {
+                    format!("{}{}", base_iri, Self::sanitize_identifier(range_name))
+                };
                 let range_class = build.class(build.iri(range_iri_str.as_str()));
                 let range_axiom = ObjectPropertyRange {
                     ope: ObjectPropertyExpression::ObjectProperty(op.clone()),
@@ -212,13 +252,25 @@ impl McGuinnessBuilder {
 
         // Step 5 & 6: Data Properties, Domains, Ranges
         for dp_def in &input.data_properties {
-            let dp_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(&dp_def.name));
+            let is_saref_dp = dp_def.name.starts_with("saref:") || ["hasValue", "hasTimestamp"].iter().any(|&p| p.eq_ignore_ascii_case(&dp_def.name));
+            let dp_iri_str = if is_saref_dp && !input.saref_patterns.is_empty() {
+                format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(dp_def.name.trim_start_matches("saref:")))
+            } else {
+                format!("{}{}", base_iri, Self::sanitize_identifier(&dp_def.name))
+            };
             let dp = build.data_property(build.iri(dp_iri_str.as_str()));
             ontology.insert(DeclareDataProperty(dp.clone()));
             data_prop_count += 1;
 
             if let Some(ref dom_name) = dp_def.domain {
-                let dom_iri_str = format!("{}{}", base_iri, Self::sanitize_identifier(dom_name));
+                let dom_is_saref = saref_core_classes.iter().any(|&sc| sc.eq_ignore_ascii_case(dom_name));
+                let dom_iri_str = if dom_name.starts_with("http://") || dom_name.starts_with("https://") {
+                    dom_name.clone()
+                } else if (!input.saref_patterns.is_empty() || dom_name.starts_with("saref:")) && dom_is_saref {
+                    format!("{}{}", SAREF_CORE_IRI, Self::sanitize_identifier(dom_name.trim_start_matches("saref:")))
+                } else {
+                    format!("{}{}", base_iri, Self::sanitize_identifier(dom_name))
+                };
                 let dom_class = build.class(build.iri(dom_iri_str.as_str()));
                 let dom_axiom = DataPropertyDomain {
                     dp: dp.clone(),
@@ -330,6 +382,7 @@ mod tests {
                 mapping_type: "equivalentClass".to_string(),
             }],
             property_mappings: vec![],
+            saref_patterns: vec![],
         };
 
         let result = McGuinnessBuilder::build(input).unwrap();
@@ -338,5 +391,30 @@ mod tests {
         assert_eq!(result.data_property_count, 1);
         assert_eq!(result.individual_count, 1);
         assert!(result.axiom_count >= 6);
+    }
+
+    #[test]
+    fn test_mcguinness_builder_saref_patterns() {
+        let input = McGuinnessOntologyInput {
+            ontology_iri: "http://example.org/grid#".to_string(),
+            prefix: Some("grid".to_string()),
+            classes: vec![ClassDefinition {
+                name: "SmartMeter".to_string(),
+                parent_class: Some("Device".to_string()),
+                comment: Some("Smart grid meter device".to_string()),
+            }],
+            object_properties: vec![],
+            data_properties: vec![],
+            individuals: vec![],
+            imports: vec![],
+            base_ontology_path: None,
+            base_ontology_content: None,
+            class_mappings: vec![],
+            property_mappings: vec![],
+            saref_patterns: vec!["feature_of_interest".to_string(), "measurement".to_string()],
+        };
+
+        let result = McGuinnessBuilder::build(input).unwrap();
+        assert!(result.axiom_count >= 10);
     }
 }

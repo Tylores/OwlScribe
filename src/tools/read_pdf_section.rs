@@ -18,6 +18,7 @@ pub struct ReadPdfSectionArgs {
     pub min_confidence: Option<f64>,
     pub base_ontology_path: Option<String>,
     pub base_ontology_seed: Option<BaseOntologySeed>,
+    pub saref_patterns: Option<Vec<String>>,
 }
 
 pub fn tool_definition() -> McpTool {
@@ -63,6 +64,11 @@ pub fn tool_definition() -> McpTool {
                 "base_ontology_seed": {
                     "type": "object",
                     "description": "Optional base ontology seed object to align candidate terms."
+                },
+                "saref_patterns": {
+                    "type": "array",
+                    "description": "Optional list of ETSI SAREF Design Patterns to apply (e.g. ['feature_of_interest', 'measurement', 'command_function', 'system_topology', 'state_commodity']).",
+                    "items": { "type": "string" }
                 }
             },
             "required": ["pdf_path"]

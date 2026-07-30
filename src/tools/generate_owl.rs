@@ -127,6 +127,11 @@ pub fn tool_definition() -> McpTool {
                         },
                         "required": ["term", "target_iri"]
                     }
+                },
+                "saref_patterns": {
+                    "type": "array",
+                    "description": "List of ETSI SAREF Design Patterns to generate as core ontology baselines (e.g. ['feature_of_interest', 'measurement', 'command_function', 'system_topology', 'state_commodity']).",
+                    "items": { "type": "string" }
                 }
             },
             "required": ["ontology_iri"]
@@ -167,6 +172,11 @@ pub fn execute(args: GenerateOwlOntologyArgs) -> McpToolCallResult {
         for pm in &staged.property_mappings {
             if !input.property_mappings.iter().any(|m| m.property_name.eq_ignore_ascii_case(&pm.property_name)) {
                 input.property_mappings.push(pm.clone());
+            }
+        }
+        for spat in &staged.saref_patterns {
+            if !input.saref_patterns.iter().any(|p| p.eq_ignore_ascii_case(spat)) {
+                input.saref_patterns.push(spat.clone());
             }
         }
     }
