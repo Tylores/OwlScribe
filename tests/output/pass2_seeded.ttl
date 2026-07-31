@@ -7,9 +7,9 @@
 <https://saref.etsi.org/saref4grid/> a owl:Ontology ;
     owl:imports <https://saref.etsi.org/core/> .
 
-<https://saref.etsi.org/saref4grid/SmartGridMeter> a owl:Class .
 <https://saref.etsi.org/saref4grid/MeterProperty> a owl:Class .
 <https://saref.etsi.org/saref4grid/ProfileGeneric> a owl:Class .
+<https://saref.etsi.org/saref4grid/SmartGridMeter> a owl:Class .
 <https://saref.etsi.org/saref4grid/AgenticDevice> a owl:Class .
 
 <https://saref.etsi.org/saref4grid/Property__Definition__s4grid> rdfs:subClassOf <https://saref.etsi.org/core/Device> .
