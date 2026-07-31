@@ -1,5 +1,5 @@
 use crate::mcp::protocol::{McpTool, McpToolCallResult};
-use crate::ontology::mcguinness_builder::{McGuinnessBuilder, McGuinnessOntologyInput};
+use crate::ontology::mcguinness_builder::{McGuinnessBuilder, McGuinnessOntologyInput, TaxonomyAuditReport};
 use crate::ontology::serializer::{OntologyFormat, OntologySerializer};
 use crate::ontology::staging::STAGED_INVENTORY;
 use serde::{Deserialize, Serialize};
@@ -21,6 +21,7 @@ pub struct GenerateOwlOntologyResponse {
     pub data_property_count: usize,
     pub individual_count: usize,
     pub axiom_count: usize,
+    pub taxonomy_audit: TaxonomyAuditReport,
     pub serialized_ontology: String,
 }
 
@@ -41,8 +42,8 @@ pub fn tool_definition() -> McpTool {
                 },
                 "format": {
                     "type": "string",
-                    "enum": ["turtle", "jsonld", "ofn", "rdfxml"],
-                    "description": "Output syntax format. Defaults to 'turtle' (Turtle .ttl). Also supports 'jsonld', 'ofn', and 'rdfxml'."
+                    "enum": ["turtle", "jsonld", "ofn", "rdfxml", "mermaid"],
+                    "description": "Output syntax format. Defaults to 'turtle' (Turtle .ttl). Also supports 'jsonld', 'ofn', 'rdfxml', and 'mermaid'."
                 },
                 "classes": {
                     "type": "array",
@@ -192,6 +193,7 @@ pub fn execute(args: GenerateOwlOntologyArgs) -> McpToolCallResult {
                     data_property_count: built.data_property_count,
                     individual_count: built.individual_count,
                     axiom_count: built.axiom_count,
+                    taxonomy_audit: built.taxonomy_audit,
                     serialized_ontology: serialized,
                 };
                 match serde_json::to_string_pretty(&resp) {

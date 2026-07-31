@@ -80,6 +80,15 @@ pub struct McGuinnessOntologyInput {
     pub saref_patterns: Vec<String>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct TaxonomyAuditReport {
+    pub total_classes: usize,
+    pub subclass_axioms: usize,
+    pub object_property_domain_axioms: usize,
+    pub object_property_range_axioms: usize,
+    pub orphaned_classes: Vec<String>,
+}
+
 #[derive(Debug)]
 pub struct McGuinnessOntologyResult {
     pub ontology: SetOntology<ArcStr>,
@@ -89,6 +98,7 @@ pub struct McGuinnessOntologyResult {
     pub data_property_count: usize,
     pub individual_count: usize,
     pub axiom_count: usize,
+    pub taxonomy_audit: TaxonomyAuditReport,
 }
 
 pub struct McGuinnessBuilder;
@@ -311,6 +321,7 @@ impl McGuinnessBuilder {
         }
 
         let axiom_count = ontology.iter().count();
+        let taxonomy_audit = Self::audit_taxonomy_axioms(&ontology);
 
         Ok(McGuinnessOntologyResult {
             ontology,
@@ -320,7 +331,56 @@ impl McGuinnessBuilder {
             data_property_count: data_prop_count,
             individual_count,
             axiom_count,
+            taxonomy_audit,
         })
+    }
+
+    pub fn audit_taxonomy_axioms(ontology: &SetOntology<ArcStr>) -> TaxonomyAuditReport {
+        let mut declared_classes: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        let mut sub_classes: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        let mut super_classes: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        let mut subclass_axioms = 0;
+        let mut op_domain_axioms = 0;
+        let mut op_range_axioms = 0;
+
+        for component in ontology.iter() {
+            match &component.component {
+                Component::DeclareClass(DeclareClass(c)) => {
+                    declared_classes.insert(c.0.as_ref().to_string());
+                }
+                Component::SubClassOf(SubClassOf { sub, sup }) => {
+                    subclass_axioms += 1;
+                    if let ClassExpression::Class(c) = sub {
+                        sub_classes.insert(c.0.as_ref().to_string());
+                    }
+                    if let ClassExpression::Class(c) = sup {
+                        super_classes.insert(c.0.as_ref().to_string());
+                    }
+                }
+                Component::ObjectPropertyDomain(_) => {
+                    op_domain_axioms += 1;
+                }
+                Component::ObjectPropertyRange(_) => {
+                    op_range_axioms += 1;
+                }
+                _ => {}
+            }
+        }
+
+        let total_classes = declared_classes.len();
+
+        let orphaned_classes: Vec<String> = declared_classes
+            .into_iter()
+            .filter(|cls| !sub_classes.contains(cls) && !super_classes.contains(cls))
+            .collect();
+
+        TaxonomyAuditReport {
+            total_classes,
+            subclass_axioms,
+            object_property_domain_axioms: op_domain_axioms,
+            object_property_range_axioms: op_range_axioms,
+            orphaned_classes,
+        }
     }
 
     fn sanitize_identifier(raw: &str) -> String {

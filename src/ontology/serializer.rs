@@ -4,6 +4,8 @@ use horned_owl::ontology::set::SetOntology;
 use serde::{Deserialize, Serialize};
 use std::io::Cursor;
 
+use crate::ontology::mermaid::{MermaidConfig, MermaidTranslator};
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum OntologyFormat {
@@ -12,6 +14,7 @@ pub enum OntologyFormat {
     JsonLd,
     Ofn, // OWL Functional Syntax
     RdfXml,
+    Mermaid,
 }
 
 impl Default for OntologyFormat {
@@ -38,8 +41,10 @@ impl OntologySerializer {
                 String::from_utf8(buffer).context("Serialized ontology output is not valid UTF-8")
             }
             OntologyFormat::RdfXml => Self::serialize_turtle(ontology),
+            OntologyFormat::Mermaid => MermaidTranslator::translate(ontology, &MermaidConfig::default()),
         }
     }
+
 
     fn serialize_jsonld(ontology: &SetOntology<ArcStr>) -> Result<String> {
         use horned_owl::model::*;
