@@ -167,9 +167,14 @@ pub fn execute(args: ProposeOntologyTermsArgs) -> McpToolCallResult {
 
     let class_names: Vec<String> = inventory.classes.iter().map(|c| c.name.to_lowercase()).collect();
     for c in &inventory.classes {
-        if let Some(ref parent) = c.parent_class {
-            if !class_names.contains(&parent.to_lowercase()) && !parent.contains(':') {
-                warnings.push(format!("Class '{}' references parent class '{}' which is not defined in staged inventory or base ontology.", c.name, parent));
+        match &c.parent_class {
+            Some(parent) if !parent.trim().is_empty() => {
+                if !class_names.contains(&parent.to_lowercase()) && !parent.contains(':') {
+                    warnings.push(format!("Class '{}' references parent class '{}' which is not defined in staged inventory or base ontology.", c.name, parent));
+                }
+            }
+            _ => {
+                warnings.push(format!("Class '{}' has no parent_class specified. It will be an unparented root class unless assigned a superclass.", c.name));
             }
         }
     }
